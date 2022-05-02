@@ -13,6 +13,7 @@ const initState: AppState = {
   ui: {
     dialogOpen: {},
   },
+  products: [],
 }
 
 export default function makeStore(initialState = initState) {

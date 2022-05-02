@@ -1,8 +1,10 @@
-import { takeLatest } from 'redux-saga/effects'
+import { takeLatest, select } from 'redux-saga/effects'
 
 import { ADD_PRODUCT, AddProductAction } from '../../types'
 
 function* doSomethingWhenAddingProduct(action: AddProductAction) {
+  const state = select()
+  console.log(state)
   yield console.log(action)
 }
 
