@@ -1,19 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
-
-import { AppState } from '../types'
 import createRootReducer from './reducers'
 import rootSaga from './sagas'
 
-const initState: AppState = {
-  product: {
-    inCart: [],
-  },
-  ui: {
-    dialogOpen: {},
-  },
-  products: [],
+const initState: any = {
+  fetched: { data: [], loading: false, error: false },
 }
 
 export default function makeStore(initialState = initState) {

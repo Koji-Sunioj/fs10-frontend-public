@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux'
 
-import products from './products'
-import product from './product'
-import ui from './ui'
+import fetched from './products'
 
 const createRootReducer = () =>
   combineReducers({
-    product,
-    ui,
-    products,
+    fetched,
   })
 
 export default createRootReducer

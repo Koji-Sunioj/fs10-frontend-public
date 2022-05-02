@@ -1,25 +1,36 @@
 import React from 'react'
-import { Container, Row, InputGroup, FormControl } from 'react-bootstrap'
+import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
-import { getUsersRequest } from '../redux/actions'
+import { fetchInitiate } from '../redux/actions'
+import TableData from '../components/Table'
 
 const Home = () => {
-  const products: any[] = useSelector((state: any) => state.products)
+  const { data, loading, error }: any = useSelector(
+    (state: any) => state.fetched
+  )
   const dispatch = useDispatch()
-  dispatch(getUsersRequest())
-
-  console.log(products)
-
+  if (!data.length && !error && !loading) {
+    dispatch(fetchInitiate())
+  }
   return (
     <>
-      <Container style={{ textAlign: 'center', marginTop: '20px' }}>
-        <h1>Welcome to my store</h1>
-        <Row style={{ justifyContent: 'center' }}>
+      <Container>
+        <Row style={{ justifyContent: 'center', textAlign: 'center' }}>
+          <h1>Welcome to my store</h1>
           <InputGroup className="mb-3" style={{ width: '70%' }}>
             <InputGroup.Text>Search: </InputGroup.Text>
             <FormControl placeholder="product name, category...." />
           </InputGroup>
+          <div style={{ width: '50%' }}>
+            {loading && (
+              <p>
+                <strong>...loading</strong>
+              </p>
+            )}
+            {error && <Alert variant="danger">error fetching data :(</Alert>}
+          </div>
         </Row>
+        <Row>{data.length > 0 && <TableData values={data!} />}</Row>
       </Container>
     </>
   )

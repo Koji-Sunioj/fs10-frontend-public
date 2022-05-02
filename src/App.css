@@ -5,3 +5,23 @@ body {
 nav {
   background-color: white;
 }
+
+.row {
+  margin: 40px;
+}
+
+th,td {
+  text-align: center;
+  vertical-align:middle;
+}
+
+img{
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.title-column{
+  width: 30%;
+  text-align: left;
+}

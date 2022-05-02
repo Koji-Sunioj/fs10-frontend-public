@@ -1,9 +1,12 @@
 // Action types
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
+export const FETCH_FAILED = 'FETCH_FAILED'
+export const FETCH_LOADING = 'FETCH_LOADING'
+
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
-export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
-export const ADD_PRODUCTS = 'ADD_PRODUCTS'
 
 // Enum
 export enum DialogType {
@@ -55,7 +58,5 @@ export type UiState = {
 }
 
 export type AppState = {
-  product: ProductState
-  ui: UiState
   products: any[]
 }
