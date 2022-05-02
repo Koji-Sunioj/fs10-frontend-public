@@ -2,11 +2,11 @@ import React from 'react'
 import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchInitiate } from '../redux/actions'
-import TableData from '../components/Table'
+import TableData from '../components/TableData'
 
 const Home = () => {
   const { data, loading, error }: any = useSelector(
-    (state: any) => state.fetched
+    (state: any) => state.fetchedTable
   )
   const dispatch = useDispatch()
   if (!data.length && !error && !loading) {

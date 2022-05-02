@@ -5,7 +5,8 @@ import createRootReducer from './reducers'
 import rootSaga from './sagas'
 
 const initState: any = {
-  fetched: { data: [], loading: false, error: false },
+  fetchedTable: { data: [], loading: false, error: false },
+  fetchedOne: { data: null, loading: false, error: false },
 }
 
 export default function makeStore(initialState = initState) {

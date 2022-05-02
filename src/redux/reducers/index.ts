@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 
-import fetched from './products'
+import fetchedTable from './products'
+import fetchedOne from './product'
 
 const createRootReducer = () =>
   combineReducers({
-    fetched,
+    fetchedTable,
+    fetchedOne,
   })
 
 export default createRootReducer
