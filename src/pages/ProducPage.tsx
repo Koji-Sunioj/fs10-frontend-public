@@ -14,13 +14,10 @@ const ProductPage = () => {
   )
   const dispatch = useDispatch()
 
-  if (
-    (data !== null && data.id !== Number(id)) ||
-    (!data && !error && !loading)
-  ) {
+  if ((data && data.id !== Number(id)) || (!data && !error && !loading)) {
     dispatch(fetchOneInitiate(id))
   }
-  console.log(data)
+
   return (
     <Container>
       <Row>

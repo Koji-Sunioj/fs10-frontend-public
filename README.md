@@ -1,3 +1,10 @@
+from Koji:
+
+Hello. Let me know if anything can be improved. I removed a lot of type settings in the redux files (exemplified in the starter template), because i found it verbose and i didn't get any typescript errors with the way I did it (mostly focusing on what actions return or accept as parameters). The redux saga api fetch is initiated when the home page is visited, as well as the component route (depending on condition). I kept the fetch data state and search string into seperate useSelector lines, because there might be more state properties coming soon and wanted the page to focus on those two.
+
+So features (if any) for now are currently the search input, and visiting product pages. More to come time permitting. Thanks!
+
+
 # Fast Track React app template with TypeScript & Redux 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
