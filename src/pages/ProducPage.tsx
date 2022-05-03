@@ -1,14 +1,16 @@
 import React from 'react'
-import { Container, Row, Col, Button } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchOneInitiate } from '../redux/actions'
+import { Container, Row, Col, Button } from 'react-bootstrap'
+
 import Stars from '../components/Stars'
+import { AppState, FetchedOneState } from '../types'
 
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>()
-  const { data, loading, error }: any = useSelector(
-    (state: any) => state.fetchedOne
+  const { data, loading, error }: FetchedOneState = useSelector(
+    (state: AppState) => state.fetchedOne
   )
   const dispatch = useDispatch()
 

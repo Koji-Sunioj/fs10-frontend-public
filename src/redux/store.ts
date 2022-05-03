@@ -4,7 +4,9 @@ import thunk from 'redux-thunk'
 import createRootReducer from './reducers'
 import rootSaga from './sagas'
 
-const initState: any = {
+import { AppState } from '../types'
+
+const initState: AppState = {
   fetchedTable: { data: [], loading: false, error: false },
   fetchedOne: { data: null, loading: false, error: false },
   searchTable: { stringFilter: '' },

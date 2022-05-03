@@ -1,12 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Table from 'react-bootstrap/Table'
-import Stars from './Stars'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 
-const TableData = ({ values, filter }: any) => {
+import Stars from './Stars'
+import { Product } from '../types'
+
+type TablePropType = {
+  values: Product[]
+  filter: string
+}
+
+const TableData = ({ values, filter }: TablePropType) => {
   const filtered = values.filter(
-    (value: any) =>
+    (value: Product) =>
       value.title.includes(filter) || value.category.includes(filter)
   )
 
@@ -24,7 +30,7 @@ const TableData = ({ values, filter }: any) => {
           </tr>
         </thead>
         <tbody>
-          {filtered.map((value: any) => (
+          {filtered.map((value) => (
             <tr key={value.id}>
               <td>
                 <img className="img" src={value.image} alt={value.title}></img>

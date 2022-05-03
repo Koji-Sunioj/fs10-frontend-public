@@ -3,11 +3,20 @@ import {
   FETCH_ONE_PRODUCT_SUCCESS,
   FETCH_ONE_PRODUCT_FAILED,
   FETCH_ONE_PRODUCT_LOADING,
+  FetchedOneState,
+  Product,
 } from '../../types'
 
-const initialState: any = { data: null, loading: false, error: false }
+const initialState: FetchedOneState = {
+  data: null,
+  loading: false,
+  error: false,
+}
 
-export default function product(state: any = initialState, action: any): any {
+export default function product(
+  state = initialState,
+  action: { type: string; payload: Product }
+): FetchedOneState {
   switch (action.type) {
   case FETCH_ONE_PRODUCT_INIT: {
     return state

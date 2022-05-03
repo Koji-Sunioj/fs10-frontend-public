@@ -1,13 +1,12 @@
+import App from './App'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
-import makeStore from './redux/store'
 import { BrowserRouter as Router } from 'react-router-dom'
-
+import makeStore from './redux/store'
+import { Provider } from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import './App.css'
-import App from './App'
 
 const store = makeStore()
 

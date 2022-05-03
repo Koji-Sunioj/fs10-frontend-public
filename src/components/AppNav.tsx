@@ -7,7 +7,7 @@ const AppNav = () => (
     <Container fluid>
       <Link to={'/'} className="navbar-brand">
         Home
-      </Link>{' '}
+      </Link>
       <Nav style={{ width: '200px', justifyContent: 'space-between' }}>
         <Dropdown>
           <Dropdown.Toggle variant="light" id="dropdown-basic">

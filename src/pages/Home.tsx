@@ -1,22 +1,26 @@
 import React from 'react'
-import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchInitiate, updateSearch } from '../redux/actions'
+import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
+
 import TableData from '../components/TableData'
+import { AppState, FetchedTableState, SearchTableState } from '../types'
 
 const Home = () => {
-  const { data, loading, error }: any = useSelector(
-    (state: any) => state.fetchedTable
+  const { data, loading, error }: FetchedTableState = useSelector(
+    (state: AppState) => state.fetchedTable
   )
-  const { stringFilter }: any = useSelector((state: any) => state.searchTable)
+  const { stringFilter }: SearchTableState = useSelector(
+    (state: AppState) => state.searchTable
+  )
 
   const dispatch = useDispatch()
   if (!data.length && !error && !loading) {
     dispatch(fetchInitiate())
   }
 
-  const filterTable = (event: any) => {
-    dispatch(updateSearch(event.target.value))
+  const filterTable = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateSearch(event.currentTarget.value))
   }
 
   return (

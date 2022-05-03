@@ -3,6 +3,7 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_LOADING,
   FETCH_PRODUCTS_FAILED,
+  Product,
 } from '../../types'
 
 export const fetchInitiate = () => ({
@@ -17,7 +18,7 @@ export const fetchFailed = () => ({
   type: FETCH_PRODUCTS_FAILED,
 })
 
-export function addProducts(payload: any): any {
+export function addProducts(payload: Product[]) {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
     payload,
