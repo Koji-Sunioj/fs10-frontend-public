@@ -44,3 +44,8 @@ a {
   padding:20px;
   background-color: white;
 }
+
+.error-loading
+{
+text-align: center;
+}

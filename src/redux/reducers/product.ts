@@ -13,11 +13,11 @@ export default function product(state: any = initialState, action: any): any {
     return state
   }
   case FETCH_ONE_PRODUCT_LOADING: {
-    return { ...state, loading: true, error: false }
+    return { ...state, data: null, loading: true, error: false }
   }
 
   case FETCH_ONE_PRODUCT_FAILED: {
-    return { ...state, error: true, loading: false }
+    return { ...state, data: null, loading: false, error: true }
   }
 
   case FETCH_ONE_PRODUCT_SUCCESS: {

@@ -7,6 +7,7 @@ import rootSaga from './sagas'
 const initState: any = {
   fetchedTable: { data: [], loading: false, error: false },
   fetchedOne: { data: null, loading: false, error: false },
+  searchTable: { stringFilter: '' },
 }
 
 export default function makeStore(initialState = initState) {

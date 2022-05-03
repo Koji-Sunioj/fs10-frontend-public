@@ -11,16 +11,33 @@ const ProductPage = () => {
     (state: any) => state.fetchedOne
   )
   const dispatch = useDispatch()
-  if (!data && !error && !loading) {
+
+  if (
+    (data !== null && data.id !== Number(id)) ||
+    (!data && !error && !loading)
+  ) {
     dispatch(fetchOneInitiate(id))
   }
   console.log(data)
   return (
     <Container>
       <Row>
+        {error && (
+          <p className="error-loading">
+            <strong>error parsing data :(</strong>
+          </p>
+        )}
+        {loading && (
+          <p className="error-loading">
+            <strong>...loading</strong>
+          </p>
+        )}
         {data && (
           <>
-            <Col style={{ textAlign: 'center' }} lg={6}>
+            <Col
+              style={{ textAlign: 'center', verticalAlign: 'middle' }}
+              lg={6}
+            >
               <img
                 src={data.image}
                 className="card-image"
@@ -30,10 +47,16 @@ const ProductPage = () => {
             <Col lg={6}>
               <h3>{data.title}</h3>
               <p>{data.description}</p>
-              <p>{data.category}</p>
-              <p>{data.price}</p>
               <p>
-                {Stars(data.rating.rate)} - from {data.rating.count} reviews{' '}
+                <strong>category: </strong>
+                {data.category}
+              </p>
+              <p>
+                <strong>price: </strong>&euro;{data.price.toFixed(2)}
+              </p>
+              <p>
+                {Stars(Number(data.rating.rate), data.id)} - from{' '}
+                {data.rating.count} reviews{' '}
               </p>
               <Button>Add to Cart</Button>
             </Col>

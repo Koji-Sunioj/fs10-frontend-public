@@ -4,7 +4,12 @@ import Table from 'react-bootstrap/Table'
 import Stars from './Stars'
 import { Button } from 'react-bootstrap'
 
-const TableData = ({ values }: any) => {
+const TableData = ({ values, filter }: any) => {
+  const filtered = values.filter(
+    (value: any) =>
+      value.title.includes(filter) || value.category.includes(filter)
+  )
+
   return (
     <>
       <Table hover variant="light" size="lg">
@@ -19,7 +24,7 @@ const TableData = ({ values }: any) => {
           </tr>
         </thead>
         <tbody>
-          {values.map((value: any) => (
+          {filtered.map((value: any) => (
             <tr key={value.id}>
               <td>
                 <img className="img" src={value.image} alt={value.title}></img>
@@ -29,7 +34,7 @@ const TableData = ({ values }: any) => {
               </td>
               <td>{value.category}</td>
               <td>&euro;{value.price.toFixed(2)}</td>
-              <td>{Stars(value.rating.rate.toFixed(1))}</td>
+              <td>{Stars(Number(value.rating.rate), value.id)}</td>
               <td>
                 <Button>Add to cart</Button>
               </td>
