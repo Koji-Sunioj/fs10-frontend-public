@@ -8,13 +8,15 @@ import { AppState, FetchedTableState, SearchTableState } from '../types'
 
 const Home = () => {
   const { data, loading, error }: FetchedTableState = useSelector(
-    (state: AppState) => state.tableData
+    (state: AppState) => state.products
   )
-  const { stringFilter }: SearchTableState = useSelector(
-    (state: AppState) => state.searchTable
+
+  const { searchBy }: SearchTableState = useSelector(
+    (state: AppState) => state.tableview
   )
 
   const dispatch = useDispatch()
+
   if (!data.length && !error && !loading) {
     dispatch(fetchInitiate())
   }
@@ -32,7 +34,7 @@ const Home = () => {
             <FormControl
               onChange={filterTable}
               placeholder="product name, category...."
-              value={stringFilter}
+              value={searchBy}
             />
           </InputGroup>
           <div style={{ width: '50%' }}>
@@ -45,9 +47,7 @@ const Home = () => {
           </div>
         </Row>
         <Row>
-          {data.length > 0 && (
-            <TableView values={data!} filter={stringFilter} />
-          )}
+          {data.length > 0 && <TableView values={data!} filter={searchBy} />}
         </Row>
       </Container>
     </>

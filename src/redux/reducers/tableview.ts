@@ -1,6 +1,6 @@
 import { UPDATE_SEARCH, SearchTableState } from '../../types'
 
-const initialState: SearchTableState = { stringFilter: '' }
+const initialState: SearchTableState = { searchBy: '' }
 
 export default function products(
   state = initialState,
@@ -8,7 +8,7 @@ export default function products(
 ) {
   switch (action.type) {
   case UPDATE_SEARCH: {
-    return { ...state, stringFilter: action.payload }
+    return { ...state, searchBy: action.payload }
   }
   default:
     return state

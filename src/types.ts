@@ -26,10 +26,10 @@ export type Product = {
 
 export type Cart = Product[] | []
 
-export type SearchTableState = { stringFilter: string }
+export type SearchTableState = { searchBy: string }
 
 export type AppState = {
-  tableData: FetchedTableState
-  searchTable: SearchTableState
+  products: FetchedTableState
+  tableview: SearchTableState
   cart: Cart
 }

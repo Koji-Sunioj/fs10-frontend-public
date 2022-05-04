@@ -11,7 +11,7 @@ import { AppState, FetchedTableState, Cart } from '../types'
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>()
   const { data }: FetchedTableState = useSelector(
-    (state: AppState) => state.tableData
+    (state: AppState) => state.products
   )
 
   console.log(data)
