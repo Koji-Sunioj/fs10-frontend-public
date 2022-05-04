@@ -1,65 +1,67 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchOneInitiate } from '../redux/actions'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-
+import { addToCart } from '../redux/actions'
 import Stars from '../components/Stars'
-import { AppState, FetchedOneState } from '../types'
+import { AppState, FetchedTableState, Cart } from '../types'
+import checkCart from '../functions/checkCart'
 
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>()
-  const { data, loading, error }: FetchedOneState = useSelector(
-    (state: AppState) => state.productData
+  const { data }: FetchedTableState = useSelector(
+    (state: AppState) => state.tableData
   )
+
+  const cart: Cart = useSelector((state: AppState) => state.cart)
   const dispatch = useDispatch()
 
-  if ((data && data.id !== Number(id)) || (!data && !error && !loading)) {
-    dispatch(fetchOneInitiate(id))
-  }
+  const product = data.find((item) => item.id === Number(id))
 
   return (
     <Container>
       <Row>
-        {error && (
-          <p className="error-loading">
-            <strong>error parsing data :(</strong>
-          </p>
-        )}
-        {loading && (
-          <p className="error-loading">
-            <strong>...loading</strong>
-          </p>
-        )}
-        {data && (
+        {product && (
           <>
             <Col
               style={{ textAlign: 'center', verticalAlign: 'middle' }}
               lg={6}
             >
               <img
-                src={data.image}
+                src={product.image}
                 className="card-image"
-                alt={data.title}
+                alt={product.title}
               ></img>
             </Col>
             <Col lg={6}>
-              <h3>{data.title}</h3>
-              <p>{data.description}</p>
+              <h3>{product.title}</h3>
+              <p>{product.description}</p>
               <p>
                 <strong>category: </strong>
-                {data.category}
+                {product.category}
               </p>
               <p>
-                <strong>price: </strong>&euro;{data.price.toFixed(2)}
+                <strong>price: </strong>&euro;{product.price.toFixed(2)}
               </p>
               <p>
-                {Stars(Number(data.rating.rate), data.id)} - from{' '}
-                {data.rating.count} reviews{' '}
+                {Stars(Number(product.rating.rate), product.id)} - from{' '}
+                {product.rating.count} reviews{' '}
               </p>
-              <Button>Add to Cart</Button>
+              <Button
+                onClick={() => {
+                  dispatch(addToCart(product))
+                }}
+                disabled={checkCart(product.id, cart)}
+              >
+                Add to Cart
+              </Button>
             </Col>
           </>
+        )}
+        {!product && (
+          <p className="error-loading">
+            <strong>error parsing data :(</strong>
+          </p>
         )}
       </Row>
     </Container>

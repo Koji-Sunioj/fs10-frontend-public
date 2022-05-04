@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux'
 
 import tableData from './tabledata'
-import productData from './productdata'
 import searchTable from './searchtable'
+import cart from './cart'
 
 const createRootReducer = () =>
   combineReducers({
     tableData,
-    productData,
+
     searchTable,
+    cart,
   })
 
 export default createRootReducer

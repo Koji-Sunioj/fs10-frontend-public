@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 
+import checkCart from '../functions/checkCart'
+import { addToCart } from '../redux/actions'
 import Stars from './Stars'
-import { Product } from '../types'
+import { Product, Cart, AppState } from '../types'
 
 type TablePropType = {
   values: Product[]
@@ -11,6 +14,10 @@ type TablePropType = {
 }
 
 const TableView = ({ values, filter }: TablePropType) => {
+  const dispatch = useDispatch()
+
+  const cart: Cart = useSelector((state: AppState) => state.cart)
+
   const filtered = values.filter(
     (value: Product) =>
       value.title.toLowerCase().includes(filter) ||
@@ -19,7 +26,7 @@ const TableView = ({ values, filter }: TablePropType) => {
 
   return (
     <>
-      <Table hover variant="light" size="lg">
+      <Table hover variant="light" size="sm">
         <thead>
           <tr>
             <th></th>
@@ -43,7 +50,14 @@ const TableView = ({ values, filter }: TablePropType) => {
               <td>&euro;{value.price.toFixed(2)}</td>
               <td>{Stars(Number(value.rating.rate), value.id)}</td>
               <td>
-                <Button>Add to cart</Button>
+                <Button
+                  onClick={() => {
+                    dispatch(addToCart(value))
+                  }}
+                  disabled={checkCart(value.id, cart)}
+                >
+                  Add to cart
+                </Button>
               </td>
             </tr>
           ))}

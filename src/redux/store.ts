@@ -8,8 +8,8 @@ import { AppState } from '../types'
 
 const initState: AppState = {
   tableData: { data: [], loading: false, error: false },
-  productData: { data: null, loading: false, error: false },
   searchTable: { stringFilter: '' },
+  cart: [],
 }
 
 export default function makeStore(initialState = initState) {

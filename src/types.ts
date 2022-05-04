@@ -11,14 +11,11 @@ export const FETCH_ONE_PRODUCT_LOADING = 'FETCH_ONE_PRODUCT_LOADING'
 
 export const UPDATE_SEARCH = 'UPDATE_SEARCH'
 
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+
 export type FetchedTableState = {
   data: Product[]
-  loading: boolean
-  error: boolean
-}
-
-export type FetchedOneState = {
-  data: Product | null
   loading: boolean
   error: boolean
 }
@@ -33,10 +30,12 @@ export type Product = {
   rating: { rate: number; count: number }
 }
 
+export type Cart = Product[] | []
+
 export type SearchTableState = { stringFilter: string }
 
 export type AppState = {
   tableData: FetchedTableState
-  productData: FetchedOneState
   searchTable: SearchTableState
+  cart: Cart
 }
