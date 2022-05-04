@@ -10,6 +10,7 @@ const initState: AppState = {
   products: { data: [], loading: false, error: false },
   tableview: { searchBy: '' },
   cart: [],
+  sidepanel: { collapsed: true },
 }
 
 export default function makeStore(initialState = initState) {

@@ -7,52 +7,66 @@ nav {
 }
 
 .col-lg-6 {
-  padding:20px;
+  padding: 20px;
   background-color: white;
 }
 
 .cart-notification {
-  
   color: red;
-
 }
 
-h1,.row {
+h1,
+.row {
   margin: 40px;
 }
 
-th,td {
+th,
+td {
   text-align: center;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
-.img{
+.img {
   width: 100px;
   height: 100px;
   object-fit: contain;
 }
 
-.card-image{
+.card-image {
   width: 300px;
   object-fit: contain;
 }
 
-.title-column{
+.title-column {
   width: 30%;
   text-align: left;
 }
 
 .stars {
-  color:orange
+  color: orange;
 }
 
 a {
   text-decoration: none;
 }
 
-
-
-.error-loading
-{
-text-align: center;
+.error-loading {
+  text-align: center;
 }
+
+.navbar {
+  border-bottom:  1px solid lightgrey;
+}
+
+.side-bar {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  border-left:  1px solid lightgrey;
+  background-color: white;
+  transition: 0.5s;
+  overflow-x: hidden;
+  text-align:left;
+}
+

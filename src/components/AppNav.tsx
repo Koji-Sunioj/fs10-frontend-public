@@ -1,20 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar, Container, Button, Dropdown } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { Cart, AppState } from '../types'
+import { sidePanelClose, sidePanelOpen } from '../redux/actions'
+import { Cart, AppState, SidePanelState } from '../types'
 
 const AppNav = () => {
   const cart: Cart = useSelector((state: AppState) => state.cart)
+  const { collapsed }: SidePanelState = useSelector(
+    (state: AppState) => state.sidepanel
+  )
+  const dispatch = useDispatch()
+
+  function toggleSidePanel() {
+    collapsed ? dispatch(sidePanelOpen()) : dispatch(sidePanelClose())
+  }
 
   return (
-    <Navbar>
+    <Navbar sticky="top">
       <Container fluid>
         <Link to={'/'} className="navbar-brand">
           Home
         </Link>
-        <Nav style={{ width: '300px', justifyContent: 'space-between' }}>
+        <Nav style={{ width: '300px', justifyContent: 'space-around' }}>
           <Dropdown>
             <Dropdown.Toggle variant="light" id="dropdown-basic">
               Change Theme
@@ -24,7 +33,7 @@ const AppNav = () => {
               <Dropdown.Item>Light</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Button variant="light" disabled={cart.length === 0}>
+          <Button variant="light" onClick={toggleSidePanel}>
             <i className="bi bi-cart"></i>
             <span className="cart-notification">
               {cart.length > 0 && cart.length}

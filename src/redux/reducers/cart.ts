@@ -11,7 +11,10 @@ export default function productData(
     return [...state, product]
   }
   case REMOVE_FROM_CART: {
-    return state
+    const filtered = state.filter(
+      (item: Product) => item.id !== action.payload.id
+    )
+    return filtered
   }
 
   default:
