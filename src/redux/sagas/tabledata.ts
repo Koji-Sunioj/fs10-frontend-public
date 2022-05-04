@@ -1,4 +1,4 @@
-import { put } from 'redux-saga/effects'
+import { put, call } from 'redux-saga/effects'
 import { takeLatest } from 'redux-saga/effects'
 
 import {
@@ -8,13 +8,18 @@ import {
   Product,
 } from '../../types'
 
+async function productsFetch(url: string): Promise<Product[]> {
+  return await fetch(url)
+    .then((res) => res.json())
+    .then((json) => json)
+}
+
 function* productsSaga() {
   try {
-    const fetched: Promise<Product[]> = yield fetch(
+    const fetched: Product[] = yield call(
+      productsFetch,
       'https://fakestoreapi.com/products/'
     )
-      .then((res) => res.json())
-      .then((json) => json)
     yield put({ type: FETCH_PRODUCTS_SUCCESS, payload: fetched })
   } catch {
     yield put({ type: FETCH_PRODUCTS_FAILED })
