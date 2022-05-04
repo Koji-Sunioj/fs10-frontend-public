@@ -24,7 +24,7 @@ const AppNav = () => {
               <Dropdown.Item>Light</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Button variant="light">
+          <Button variant="light" disabled={cart.length === 0}>
             <i className="bi bi-cart"></i>
             <span className="cart-notification">
               {cart.length > 0 && cart.length}

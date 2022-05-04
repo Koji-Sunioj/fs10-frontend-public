@@ -1,7 +1,6 @@
 import {
   FETCH_PRODUCTS_INIT,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_LOADING,
   FETCH_PRODUCTS_FAILED,
   FetchedTableState,
   Product,
@@ -19,9 +18,6 @@ export default function products(
 ): FetchedTableState {
   switch (action.type) {
   case FETCH_PRODUCTS_INIT: {
-    return state
-  }
-  case FETCH_PRODUCTS_LOADING: {
     return { ...state, loading: true, error: false }
   }
 

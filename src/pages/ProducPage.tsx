@@ -14,6 +14,8 @@ const ProductPage = () => {
     (state: AppState) => state.tableData
   )
 
+  console.log(data)
+
   const cart: Cart = useSelector((state: AppState) => state.cart)
   const dispatch = useDispatch()
 
