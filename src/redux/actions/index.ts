@@ -1,3 +1,3 @@
-export * from './products'
-export * from './product'
+export * from './tabledata'
+export * from './productdata'
 export * from './searchtable'

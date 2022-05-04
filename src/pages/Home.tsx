@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchInitiate, updateSearch } from '../redux/actions'
 import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 
-import TableData from '../components/TableData'
+import TableView from '../components/TableView'
 import { AppState, FetchedTableState, SearchTableState } from '../types'
 
 const Home = () => {
   const { data, loading, error }: FetchedTableState = useSelector(
-    (state: AppState) => state.fetchedTable
+    (state: AppState) => state.tableData
   )
   const { stringFilter }: SearchTableState = useSelector(
     (state: AppState) => state.searchTable
@@ -47,7 +47,7 @@ const Home = () => {
         </Row>
         <Row>
           {data.length > 0 && (
-            <TableData values={data!} filter={stringFilter} />
+            <TableView values={data!} filter={stringFilter} />
           )}
         </Row>
       </Container>

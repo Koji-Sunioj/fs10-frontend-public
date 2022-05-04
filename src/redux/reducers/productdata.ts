@@ -13,7 +13,7 @@ const initialState: FetchedOneState = {
   error: false,
 }
 
-export default function product(
+export default function productData(
   state = initialState,
   action: { type: string; payload: Product }
 ): FetchedOneState {

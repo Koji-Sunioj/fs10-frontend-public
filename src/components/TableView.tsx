@@ -10,10 +10,11 @@ type TablePropType = {
   filter: string
 }
 
-const TableData = ({ values, filter }: TablePropType) => {
+const TableView = ({ values, filter }: TablePropType) => {
   const filtered = values.filter(
     (value: Product) =>
-      value.title.includes(filter) || value.category.includes(filter)
+      value.title.toLowerCase().includes(filter) ||
+      value.category.includes(filter)
   )
 
   return (
@@ -52,4 +53,4 @@ const TableData = ({ values, filter }: TablePropType) => {
   )
 }
 
-export default TableData
+export default TableView

@@ -7,8 +7,8 @@ import rootSaga from './sagas'
 import { AppState } from '../types'
 
 const initState: AppState = {
-  fetchedTable: { data: [], loading: false, error: false },
-  fetchedOne: { data: null, loading: false, error: false },
+  tableData: { data: [], loading: false, error: false },
+  productData: { data: null, loading: false, error: false },
   searchTable: { stringFilter: '' },
 }
 

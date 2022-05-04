@@ -10,7 +10,7 @@ import { AppState, FetchedOneState } from '../types'
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>()
   const { data, loading, error }: FetchedOneState = useSelector(
-    (state: AppState) => state.fetchedOne
+    (state: AppState) => state.productData
   )
   const dispatch = useDispatch()
 

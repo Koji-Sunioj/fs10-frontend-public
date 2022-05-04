@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 
-import fetchedTable from './products'
-import fetchedOne from './product'
+import tableData from './tabledata'
+import productData from './productdata'
 import searchTable from './searchtable'
 
 const createRootReducer = () =>
   combineReducers({
-    fetchedTable,
-    fetchedOne,
+    tableData,
+    productData,
     searchTable,
   })
 

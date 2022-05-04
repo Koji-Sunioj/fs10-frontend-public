@@ -36,7 +36,7 @@ export type Product = {
 export type SearchTableState = { stringFilter: string }
 
 export type AppState = {
-  fetchedTable: FetchedTableState
-  fetchedOne: FetchedOneState
+  tableData: FetchedTableState
+  productData: FetchedOneState
   searchTable: SearchTableState
 }
