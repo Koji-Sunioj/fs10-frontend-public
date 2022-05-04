@@ -7,7 +7,6 @@ import cart from './cart'
 const createRootReducer = () =>
   combineReducers({
     tableData,
-
     searchTable,
     cart,
   })

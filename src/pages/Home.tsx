@@ -18,7 +18,6 @@ const Home = () => {
   if (!data.length && !error && !loading) {
     dispatch(fetchInitiate())
   }
-
   const filterTable = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateSearch(event.currentTarget.value))
   }

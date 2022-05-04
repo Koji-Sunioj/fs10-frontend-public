@@ -2,10 +2,11 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import { addToCart } from '../redux/actions'
+
 import Stars from '../components/Stars'
-import { AppState, FetchedTableState, Cart } from '../types'
+import { addToCart } from '../redux/actions'
 import checkCart from '../functions/checkCart'
+import { AppState, FetchedTableState, Cart } from '../types'
 
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>()

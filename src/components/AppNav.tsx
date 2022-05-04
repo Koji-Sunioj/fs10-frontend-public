@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar, Container, Button, Dropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
+
 import { Cart, AppState } from '../types'
 
 const AppNav = () => {
