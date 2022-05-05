@@ -8,7 +8,7 @@ import { AppState } from '../types'
 
 const initState: AppState = {
   products: { data: [], loading: false, error: false },
-  tableview: { searchBy: '' },
+  tableview: { searchBy: '', sortBy: 'title', direction: 'ascending' },
   cart: [],
   sidepanel: { collapsed: true },
 }

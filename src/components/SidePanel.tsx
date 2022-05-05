@@ -40,13 +40,17 @@ const SidePanel = () => {
               </Col>
             </Row>
           ))}
-        {sum > 0 && (
-          <Row>
+        <Row>
+          {sum > 0 ? (
             <p>
               <strong>Total: &euro;{sum.toFixed(2)}</strong>
             </p>
-          </Row>
-        )}
+          ) : (
+            <p>
+              <strong>Cart is empty &#129300;</strong>
+            </p>
+          )}
+        </Row>
       </Container>
     </div>
   )

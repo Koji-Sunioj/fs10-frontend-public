@@ -31,7 +31,7 @@ const TableView = ({ values, filter }: TablePropType) => {
           <tr>
             <th></th>
             <th>title</th>
-            <th>category Name</th>
+            <th>category name</th>
             <th>price</th>
             <th>rating</th>
             <th></th>

@@ -14,7 +14,6 @@ const Home = () => {
   const { searchBy }: SearchTableState = useSelector(
     (state: AppState) => state.tableview
   )
-
   const dispatch = useDispatch()
 
   if (!data.length && !error && !loading) {
