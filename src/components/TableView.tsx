@@ -4,13 +4,15 @@ import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import checkCart from '../functions/checkCart'
+import sort from '../functions/sortProducts'
+import pointers from '../functions/pointers'
 import { addToCart } from '../redux/actions'
 import Stars from './Stars'
-import { Product, Cart, AppState } from '../types'
+import { Product, Cart, AppState, SearchTableState } from '../types'
 
 type TablePropType = {
   values: Product[]
-  filter: string
+  filter: SearchTableState
 }
 
 const TableView = ({ values, filter }: TablePropType) => {
@@ -20,9 +22,26 @@ const TableView = ({ values, filter }: TablePropType) => {
 
   const filtered = values.filter(
     (value: Product) =>
-      value.title.toLowerCase().includes(filter) ||
-      value.category.includes(filter)
+      value.title.toLowerCase().includes(filter.searchBy) ||
+      value.category.includes(filter.searchBy)
   )
+
+  sort(filter.direction, filter.sortBy.split('.'), filtered)
+
+  function sortButton(th: string) {
+    let buttonView
+    if (filter.sortBy.includes(th)) {
+      let symbol: string = pointers[filter.direction]
+      buttonView = th + symbol
+    } else {
+      buttonView = th
+    }
+    return (
+      <th>
+        <Button variant={'light'}>{buttonView}</Button>
+      </th>
+    )
+  }
 
   return (
     <>
@@ -30,10 +49,9 @@ const TableView = ({ values, filter }: TablePropType) => {
         <thead>
           <tr>
             <th></th>
-            <th>title</th>
-            <th>category name</th>
-            <th>price</th>
-            <th>rating</th>
+            {['title', 'category name', 'price', 'rating'].map((th) =>
+              sortButton(th)
+            )}
             <th></th>
           </tr>
         </thead>

@@ -11,7 +11,7 @@ const Home = () => {
     (state: AppState) => state.products
   )
 
-  const { searchBy }: SearchTableState = useSelector(
+  const tableview: SearchTableState = useSelector(
     (state: AppState) => state.tableview
   )
   const dispatch = useDispatch()
@@ -33,7 +33,7 @@ const Home = () => {
             <FormControl
               onChange={filterTable}
               placeholder="product name, category...."
-              value={searchBy}
+              value={tableview.searchBy}
             />
           </InputGroup>
           <div style={{ width: '50%' }}>
@@ -46,7 +46,7 @@ const Home = () => {
           </div>
         </Row>
         <Row>
-          {data.length > 0 && <TableView values={data!} filter={searchBy} />}
+          {data.length > 0 && <TableView values={data!} filter={tableview} />}
         </Row>
       </Container>
     </>
