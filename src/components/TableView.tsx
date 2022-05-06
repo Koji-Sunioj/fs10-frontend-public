@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
-import checkCart from '../functions/checkCart'
-import sort from '../functions/sortProducts'
-import pointers from '../functions/pointers'
+import checkCart from '../utils/checkCart'
+import sort from '../utils/sortProducts'
+import pointers from '../utils/pointers'
 import { addToCart, updateSort } from '../redux/actions'
 import Stars from './Stars'
 import { Product, Cart, AppState, SearchTableState } from '../types'
@@ -70,44 +70,42 @@ const TableView = ({ values, filter }: TablePropType) => {
   }
 
   return (
-    <>
-      <Table hover variant="light" size="sm">
-        <thead>
-          <tr>
-            <th></th>
-            {['title', 'category', 'price', 'rating.rate'].map((th) =>
-              sortButton(th)
-            )}
-            <th></th>
+    <Table hover variant="light" size="sm">
+      <thead>
+        <tr>
+          <th></th>
+          {['title', 'category', 'price', 'rating.rate'].map((th) =>
+            sortButton(th)
+          )}
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {filtered.map((value) => (
+          <tr key={value.id}>
+            <td>
+              <img className="img" src={value.image} alt={value.title}></img>
+            </td>
+            <td className="title-column">
+              <Link to={'products/' + value.id}>{value.title}</Link>
+            </td>
+            <td>{value.category}</td>
+            <td>&euro;{value.price.toFixed(2)}</td>
+            <td>{Stars(Number(value.rating.rate), value.id)}</td>
+            <td>
+              <Button
+                onClick={() => {
+                  dispatch(addToCart(value))
+                }}
+                disabled={checkCart(value.id, cart)}
+              >
+                Add to cart
+              </Button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {filtered.map((value) => (
-            <tr key={value.id}>
-              <td>
-                <img className="img" src={value.image} alt={value.title}></img>
-              </td>
-              <td className="title-column">
-                <Link to={'products/' + value.id}>{value.title}</Link>
-              </td>
-              <td>{value.category}</td>
-              <td>&euro;{value.price.toFixed(2)}</td>
-              <td>{Stars(Number(value.rating.rate), value.id)}</td>
-              <td>
-                <Button
-                  onClick={() => {
-                    dispatch(addToCart(value))
-                  }}
-                  disabled={checkCart(value.id, cart)}
-                >
-                  Add to cart
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-    </>
+        ))}
+      </tbody>
+    </Table>
   )
 }
 

@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Nav, Navbar, Container, Button, Dropdown } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
+import { useContext } from 'react'
 
+import { ThemeContext } from '../App'
 import { sidePanelClose, sidePanelOpen } from '../redux/actions'
 import { Cart, AppState, SidePanelState } from '../types'
 
@@ -11,6 +13,9 @@ const AppNav = () => {
   const { collapsed }: SidePanelState = useSelector(
     (state: AppState) => state.sidepanel
   )
+
+  const { isDark, test } = useContext(ThemeContext)
+
   const dispatch = useDispatch()
 
   function toggleSidePanel() {
@@ -29,8 +34,20 @@ const AppNav = () => {
               Change Theme
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item>Dark</Dropdown.Item>
-              <Dropdown.Item>Light</Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  test(true)
+                }}
+              >
+                {isDark ? <strong>Dark</strong> : 'Dark'}
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => {
+                  test(false)
+                }}
+              >
+                {!isDark ? <strong>Light</strong> : 'Light'}
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           <Button variant="light" onClick={toggleSidePanel}>

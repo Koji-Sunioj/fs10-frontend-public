@@ -5,7 +5,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 
 import Stars from '../components/Stars'
 import { addToCart } from '../redux/actions'
-import checkCart from '../functions/checkCart'
+import checkCart from '../utils/checkCart'
 import { AppState, FetchedTableState, Cart } from '../types'
 
 const ProductPage = () => {

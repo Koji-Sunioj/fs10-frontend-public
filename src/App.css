@@ -1,5 +1,14 @@
 
 
+:root {
+  --main-bg-color: #FFEBCD;
+}
+
+body {
+  background-color: var(--main-bg-color);
+ 
+}
+
 nav {
   background-color: white;
 }
@@ -44,7 +53,9 @@ td {
 .img {
   width: 100px;
   height: 100px;
-  object-fit: contain;
+  object-fit: scale-down;
+  background-color: white;
+
 }
 
 .card-image {
