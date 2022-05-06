@@ -7,7 +7,7 @@ export function updateSearch(payload: string) {
   }
 }
 
-export function updateSort(payload: { searchBy: string; sortBy: string }) {
+export function updateSort(payload: { direction: string; sortBy: string }) {
   return {
     type: UPDATE_SORT,
     payload,

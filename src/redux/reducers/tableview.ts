@@ -2,15 +2,15 @@ import { UPDATE_SEARCH, UPDATE_SORT, SearchTableState } from '../../types'
 
 const initialState: SearchTableState = {
   searchBy: '',
-  sortBy: 'price',
-  direction: 'ascending',
+  sortBy: 'title',
+  direction: 'descending',
 }
 
 export default function products(
   state = initialState,
   action: {
     type: string
-    payload: SearchTableState | string
+    payload: SearchTableState
   }
 ): SearchTableState {
   switch (action.type) {
@@ -22,7 +22,11 @@ export default function products(
     }
   }
   case UPDATE_SORT: {
-    return state
+    return {
+      ...state,
+      sortBy: action.payload.sortBy,
+      direction: action.payload.direction,
+    }
   }
   default:
     return state

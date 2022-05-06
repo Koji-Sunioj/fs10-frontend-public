@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import checkCart from '../functions/checkCart'
 import sort from '../functions/sortProducts'
 import pointers from '../functions/pointers'
-import { addToCart } from '../redux/actions'
+import { addToCart, updateSort } from '../redux/actions'
 import Stars from './Stars'
 import { Product, Cart, AppState, SearchTableState } from '../types'
 
@@ -17,7 +17,6 @@ type TablePropType = {
 
 const TableView = ({ values, filter }: TablePropType) => {
   const dispatch = useDispatch()
-
   const cart: Cart = useSelector((state: AppState) => state.cart)
 
   const filtered = values.filter(
@@ -28,19 +27,46 @@ const TableView = ({ values, filter }: TablePropType) => {
 
   sort(filter.direction, filter.sortBy.split('.'), filtered)
 
+  const sortColumns = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const targeted = event.currentTarget.value
+    if (targeted === filter.sortBy) {
+      filter.direction === 'ascending'
+        ? dispatch(
+          updateSort({ sortBy: filter.sortBy, direction: 'descending' })
+        )
+        : dispatch(
+          updateSort({ sortBy: filter.sortBy, direction: 'ascending' })
+        )
+    } else {
+      dispatch(
+        updateSort({
+          sortBy: event.currentTarget.value,
+          direction: 'descending',
+        })
+      )
+    }
+  }
+
   function sortButton(th: string) {
-    let buttonView
     if (filter.sortBy.includes(th)) {
       let symbol: string = pointers[filter.direction]
-      buttonView = th + symbol
+      return (
+        <th key={th}>
+          <Button variant={'light'} onClick={sortColumns} value={th}>
+            {th.split('.')[0]}
+            {symbol}
+          </Button>
+        </th>
+      )
     } else {
-      buttonView = th
+      return (
+        <th key={th}>
+          <Button variant={'light'} onClick={sortColumns} value={th}>
+            {th.split('.')[0]}
+          </Button>
+        </th>
+      )
     }
-    return (
-      <th>
-        <Button variant={'light'}>{buttonView}</Button>
-      </th>
-    )
   }
 
   return (
@@ -49,7 +75,7 @@ const TableView = ({ values, filter }: TablePropType) => {
         <thead>
           <tr>
             <th></th>
-            {['title', 'category name', 'price', 'rating'].map((th) =>
+            {['title', 'category', 'price', 'rating.rate'].map((th) =>
               sortButton(th)
             )}
             <th></th>

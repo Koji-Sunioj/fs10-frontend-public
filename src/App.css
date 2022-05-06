@@ -1,6 +1,4 @@
-body {
-  background-color: blanchedalmond;
-}
+
 
 nav {
   background-color: white;
@@ -10,6 +8,23 @@ nav {
   padding: 20px;
   background-color: white;
 }
+
+.navbar {
+  border-bottom:  1px solid lightgrey;
+}
+
+.side-bar {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  border-left:  1px solid lightgrey;
+  background-color: white;
+  transition: 0.5s;
+  overflow-x: hidden;
+  text-align:left;
+}
+
 
 .cart-notification {
   color: red;
@@ -54,19 +69,5 @@ a {
   text-align: center;
 }
 
-.navbar {
-  border-bottom:  1px solid lightgrey;
-}
 
-.side-bar {
-  height: 100%;
-  width: 50%;
-  position: fixed;
-  z-index: 1;
-  border-left:  1px solid lightgrey;
-  background-color: white;
-  transition: 0.5s;
-  overflow-x: hidden;
-  text-align:left;
-}
 
