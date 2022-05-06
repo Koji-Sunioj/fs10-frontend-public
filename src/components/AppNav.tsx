@@ -35,6 +35,7 @@ const AppNav = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item
+                as="button"
                 onClick={() => {
                   test(true)
                 }}
@@ -42,6 +43,7 @@ const AppNav = () => {
                 {isDark ? <strong>Dark</strong> : 'Dark'}
               </Dropdown.Item>
               <Dropdown.Item
+                as="button"
                 onClick={() => {
                   test(false)
                 }}

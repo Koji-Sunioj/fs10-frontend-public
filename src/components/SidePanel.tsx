@@ -21,7 +21,7 @@ const SidePanel = () => {
       <Container>
         {cart &&
           cart.map((item) => (
-            <Row>
+            <Row key={item.id}>
               <Col sm={8}>
                 <p>{item.title}</p>
               </Col>
