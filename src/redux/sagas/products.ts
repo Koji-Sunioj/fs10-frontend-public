@@ -21,7 +21,8 @@ function* productsSaga() {
       'https://fakestoreapi.com/products/'
     )
     yield put({ type: FETCH_PRODUCTS_SUCCESS, payload: fetched })
-  } catch {
+  } catch (error) {
+    yield console.log(error)
     yield put({ type: FETCH_PRODUCTS_FAILED })
   }
 }

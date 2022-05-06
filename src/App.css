@@ -1,12 +1,14 @@
-
-
 :root {
-  --main-bg-color: #FFEBCD;
+  --main-bg-color: #ffebcd;
+  --main-text-color: black;
 }
 
 body {
   background-color: var(--main-bg-color);
- 
+}
+
+h1 {
+  color: var(--main-text-color);
 }
 
 nav {
@@ -19,7 +21,7 @@ nav {
 }
 
 .navbar {
-  border-bottom:  1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 }
 
 .side-bar {
@@ -27,13 +29,12 @@ nav {
   width: 50%;
   position: fixed;
   z-index: 1;
-  border-left:  1px solid lightgrey;
+  border-left: 1px solid lightgrey;
   background-color: white;
   transition: 0.5s;
   overflow-x: hidden;
-  text-align:left;
+  text-align: left;
 }
-
 
 .cart-notification {
   color: red;
@@ -55,7 +56,6 @@ td {
   height: 100px;
   object-fit: scale-down;
   background-color: white;
-
 }
 
 .card-image {
@@ -74,12 +74,8 @@ td {
 
 a {
   text-decoration: none;
- 
 }
 
 .error-loading {
   text-align: center;
 }
-
-
-

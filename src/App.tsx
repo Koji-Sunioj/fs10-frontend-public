@@ -5,26 +5,34 @@ import { createContext, useState } from 'react'
 import AppNav from './components/AppNav'
 import SidePanel from './components/SidePanel'
 
-export const ThemeContext = createContext({
-  isDark: false,
-  test: (bool: boolean): void => {},
+type ThemeContextType = {
+  isDark: 'light' | 'dark'
+  changeTheme: (theme: 'light' | 'dark') => void
+}
+
+export const ThemeContext = createContext<ThemeContextType>({
+  isDark: 'light',
+  changeTheme: (theme): void => {},
 })
 
 const App = () => {
-  const [isDark, setDark] = useState(false)
+  const [isDark, setDark] = useState<'light' | 'dark'>('light')
 
-  function test(bool: boolean): void {
-    setDark(bool)
-    if (bool) {
+  function changeTheme(theme: 'light' | 'dark'): void {
+    setDark(theme)
+
+    if (theme === 'dark') {
       document.documentElement.style.setProperty('--main-bg-color', 'black')
+      document.documentElement.style.setProperty('--main-text-color', 'white')
     } else {
       document.documentElement.style.setProperty('--main-bg-color', '#FFEBCD')
+      document.documentElement.style.setProperty('--main-text-color', 'black')
     }
   }
 
   return (
     <>
-      <ThemeContext.Provider value={{ isDark, test }}>
+      <ThemeContext.Provider value={{ isDark, changeTheme }}>
         <AppNav />
         <SidePanel />
         <Routes />

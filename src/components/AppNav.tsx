@@ -14,7 +14,7 @@ const AppNav = () => {
     (state: AppState) => state.sidepanel
   )
 
-  const { isDark, test } = useContext(ThemeContext)
+  const { isDark, changeTheme } = useContext(ThemeContext)
 
   const dispatch = useDispatch()
 
@@ -23,36 +23,36 @@ const AppNav = () => {
   }
 
   return (
-    <Navbar sticky="top">
+    <Navbar sticky="top" bg={isDark} variant={isDark}>
       <Container fluid>
         <Link to={'/'} className="navbar-brand">
           Home
         </Link>
         <Nav style={{ width: '300px', justifyContent: 'space-around' }}>
           <Dropdown>
-            <Dropdown.Toggle variant="light" id="dropdown-basic">
+            <Dropdown.Toggle variant={isDark} id="dropdown-basic">
               Change Theme
             </Dropdown.Toggle>
-            <Dropdown.Menu>
+            <Dropdown.Menu variant={isDark}>
               <Dropdown.Item
                 as="button"
                 onClick={() => {
-                  test(true)
+                  changeTheme('dark')
                 }}
               >
-                {isDark ? <strong>Dark</strong> : 'Dark'}
+                {isDark === 'dark' ? <strong>Dark</strong> : 'Dark'}
               </Dropdown.Item>
               <Dropdown.Item
                 as="button"
                 onClick={() => {
-                  test(false)
+                  changeTheme('light')
                 }}
               >
-                {!isDark ? <strong>Light</strong> : 'Light'}
+                {isDark === 'light' ? <strong>Light</strong> : 'Light'}
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-          <Button variant="light" onClick={toggleSidePanel}>
+          <Button variant={isDark} onClick={toggleSidePanel}>
             <i className="bi bi-cart"></i>
             <span className="cart-notification">
               {cart.length > 0 && cart.length}
