@@ -1,11 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Nav, Navbar, Container, Button, Dropdown } from 'react-bootstrap'
-import { useSelector, useDispatch } from 'react-redux'
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { sidePanelClose, sidePanelOpen } from '../redux/actions'
+import { Nav, Navbar, Container, Button, Dropdown } from 'react-bootstrap'
 
 import { ThemeContext } from '../App'
-import { sidePanelClose, sidePanelOpen } from '../redux/actions'
 import { Cart, AppState, SidePanelState } from '../types'
 
 const AppNav = () => {
@@ -18,7 +18,7 @@ const AppNav = () => {
 
   const dispatch = useDispatch()
 
-  function toggleSidePanel() {
+  const toggleSidePanel = () => {
     collapsed ? dispatch(sidePanelOpen()) : dispatch(sidePanelClose())
   }
 

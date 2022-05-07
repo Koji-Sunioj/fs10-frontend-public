@@ -1,7 +1,7 @@
 import { Product } from '../types'
 
-function sort(direction: string, target: string[], array: Product[]) {
-  function checkBrackets(target: string[], position: Record<string, any>) {
+const sort = (direction: string, target: string[], array: Product[]) => {
+  const checkBrackets = (target: string[], position: Record<string, any>) => {
     let value
     if (target.length === 1) {
       value = position[target[0]]
@@ -11,7 +11,7 @@ function sort(direction: string, target: string[], array: Product[]) {
     return value
   }
 
-  function descending(a: Product, b: Product) {
+  const descending = (a: Product, b: Product) => {
     let prev = checkBrackets(target, a)
     let next = checkBrackets(target, b)
     if (prev < next) {
@@ -23,7 +23,7 @@ function sort(direction: string, target: string[], array: Product[]) {
     return 0
   }
 
-  function ascending(a: Product, b: Product) {
+  const ascending = (a: Product, b: Product) => {
     let prev = checkBrackets(target, a)
     let next = checkBrackets(target, b)
     if (prev < next) {

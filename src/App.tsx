@@ -3,31 +3,23 @@ import Routes from './Routes'
 import { createContext, useState } from 'react'
 
 import AppNav from './components/AppNav'
+import { themes } from './utils/cssObjects'
 import SidePanel from './components/SidePanel'
-
-type ThemeContextType = {
-  isDark: 'light' | 'dark'
-  changeTheme: (theme: 'light' | 'dark') => void
-}
+import { ThemeContextType, theme } from './types'
 
 export const ThemeContext = createContext<ThemeContextType>({
   isDark: 'light',
-  changeTheme: (theme): void => {},
+  changeTheme: (): void => {},
 })
 
 const App = () => {
-  const [isDark, setDark] = useState<'light' | 'dark'>('light')
+  const [isDark, setDark] = useState<theme>('light')
 
-  function changeTheme(theme: 'light' | 'dark'): void {
+  const changeTheme = (theme: theme): void => {
     setDark(theme)
-
-    if (theme === 'dark') {
-      document.documentElement.style.setProperty('--main-bg-color', 'black')
-      document.documentElement.style.setProperty('--main-text-color', 'white')
-    } else {
-      document.documentElement.style.setProperty('--main-bg-color', '#FFEBCD')
-      document.documentElement.style.setProperty('--main-text-color', 'black')
-    }
+    Object.entries(themes[theme]).forEach((thing: any) => {
+      document.documentElement.style.setProperty(thing[0], thing[1])
+    })
   }
 
   return (

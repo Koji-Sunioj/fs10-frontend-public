@@ -46,3 +46,23 @@ export type AppState = {
   cart: Cart
   sidepanel: SidePanelState
 }
+
+export type theme = 'light' | 'dark'
+
+export type ThemeContextType = {
+  isDark: theme
+  changeTheme: (theme: 'light' | 'dark') => void
+}
+
+type color = '#212529' | 'white' | 'black' | '#FFEBCD' | '#E9ECEF'
+
+export type ThemeObjectTypes = {
+  dark: { [key: string]: color }
+  light: { [key: string]: color }
+}
+
+export type PointerProps = {
+  [key: string]: string
+  ascending: string
+  descending: string
+}

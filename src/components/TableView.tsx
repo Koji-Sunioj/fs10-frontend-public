@@ -1,13 +1,15 @@
 import React from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-
-import checkCart from '../utils/checkCart'
-import sort from '../utils/sortProducts'
-import pointers from '../utils/pointers'
 import { addToCart, updateSort } from '../redux/actions'
+
 import Stars from './Stars'
+import { ThemeContext } from '../App'
+import sort from '../utils/sortProducts'
+import checkCart from '../utils/checkCart'
+import { pointers } from '../utils/cssObjects'
 import { Product, Cart, AppState, SearchTableState } from '../types'
 
 type TablePropType = {
@@ -18,7 +20,7 @@ type TablePropType = {
 const TableView = ({ values, filter }: TablePropType) => {
   const dispatch = useDispatch()
   const cart: Cart = useSelector((state: AppState) => state.cart)
-
+  const { isDark } = useContext(ThemeContext)
   const filtered = values.filter(
     (value: Product) =>
       value.title.toLowerCase().includes(filter.searchBy) ||
@@ -30,13 +32,10 @@ const TableView = ({ values, filter }: TablePropType) => {
   const sortColumns = (event: React.MouseEvent<HTMLButtonElement>) => {
     const targeted = event.currentTarget.value
     if (targeted === filter.sortBy) {
-      filter.direction === 'ascending'
-        ? dispatch(
-          updateSort({ sortBy: filter.sortBy, direction: 'descending' })
-        )
-        : dispatch(
-          updateSort({ sortBy: filter.sortBy, direction: 'ascending' })
-        )
+      let direction =
+        filter.direction === 'descending' ? 'ascending' : 'descending'
+
+      dispatch(updateSort({ sortBy: filter.sortBy, direction: direction }))
     } else {
       dispatch(
         updateSort({
@@ -52,7 +51,7 @@ const TableView = ({ values, filter }: TablePropType) => {
       let symbol: string = pointers[filter.direction]
       return (
         <th key={th}>
-          <Button variant={'light'} onClick={sortColumns} value={th}>
+          <Button variant={isDark} onClick={sortColumns} value={th}>
             {th.split('.')[0]}
             {symbol}
           </Button>
@@ -61,7 +60,7 @@ const TableView = ({ values, filter }: TablePropType) => {
     } else {
       return (
         <th key={th}>
-          <Button variant={'light'} onClick={sortColumns} value={th}>
+          <Button variant={isDark} onClick={sortColumns} value={th}>
             {th.split('.')[0]}
           </Button>
         </th>
@@ -70,7 +69,7 @@ const TableView = ({ values, filter }: TablePropType) => {
   }
 
   return (
-    <Table hover variant="light" size="sm">
+    <Table responsive hover variant={isDark} size="sm">
       <thead>
         <tr>
           <th></th>

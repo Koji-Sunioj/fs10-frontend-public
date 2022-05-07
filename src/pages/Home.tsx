@@ -36,14 +36,12 @@ const Home = () => {
               value={tableview.searchBy}
             />
           </InputGroup>
-          <div style={{ width: '50%' }}>
-            {loading && (
-              <p>
-                <strong>...loading</strong>
-              </p>
-            )}
-            {error && <Alert variant="danger">error fetching data :(</Alert>}
-          </div>
+          {loading && (
+            <p>
+              <strong>...loading</strong>
+            </p>
+          )}
+          {error && <Alert variant="danger">error fetching data :(</Alert>}
         </Row>
         <Row>
           {data.length > 0 && <TableView values={data!} filter={tableview} />}

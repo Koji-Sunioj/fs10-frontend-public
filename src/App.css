@@ -1,29 +1,38 @@
 :root {
   --main-bg-color: #ffebcd;
   --main-text-color: black;
+  --main-bs-class: white;
+  --main-input-text: #e9ecef;
+}
+
+.input-group-text {
+  background-color: var(--main-input-text);
+  color: var(--main-text-color);
+}
+
+html {
+  overflow-y: scroll;
 }
 
 body {
   background-color: var(--main-bg-color);
+  transition: 0.5s;
+  color: var(--main-text-color);
 }
 
 h1 {
   color: var(--main-text-color);
 }
 
-nav {
-  background-color: white;
-}
-
-.col-lg-6 {
-  padding: 20px;
-  background-color: white;
+.form-control,
+.form-control:focus {
+  background-color: var(--main-bs-class);
+  color: var(--main-text-color);
 }
 
 .navbar {
   border-bottom: 1px solid lightgrey;
 }
-
 .side-bar {
   height: 100%;
   width: 50%;
@@ -34,10 +43,26 @@ nav {
   transition: 0.5s;
   overflow-x: hidden;
   text-align: left;
+  color: var(--main-text-color);
+  background-color: var(--main-bs-class);
+}
+
+table {
+  border: 1px solid white;
+}
+
+.table > :not(:first-child) {
+  border-top: none;
 }
 
 .cart-notification {
   color: red;
+}
+
+.product {
+  background-color: var(--main-bs-class);
+  border: 1px solid lightgrey;
+  padding: 20px;
 }
 
 h1,
@@ -74,8 +99,4 @@ td {
 
 a {
   text-decoration: none;
-}
-
-.error-loading {
-  text-align: center;
 }

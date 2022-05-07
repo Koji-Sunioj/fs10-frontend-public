@@ -1,9 +1,9 @@
 import React from 'react'
+import { removeFromCart } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
 import { SidePanelState, AppState, Product } from '../types'
-import { removeFromCart } from '../redux/actions'
 
 const SidePanel = () => {
   const dispatch = useDispatch()
