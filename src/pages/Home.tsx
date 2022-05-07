@@ -4,7 +4,7 @@ import { fetchInitiate, updateSearch } from '../redux/actions'
 import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 
 import TableView from '../components/TableView'
-import { AppState, FetchedTableState, SearchTableState } from '../types'
+import { AppState, FetchedTableState, SearchTableState } from '../types/types'
 
 const Home = () => {
   const { data, loading, error }: FetchedTableState = useSelector(

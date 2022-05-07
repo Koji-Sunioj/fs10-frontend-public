@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, Product, Cart } from '../../types'
+import { ADD_TO_CART, REMOVE_FROM_CART, Product, Cart } from '../../types/types'
 
 const initialState: Cart = []
 export default function productData(

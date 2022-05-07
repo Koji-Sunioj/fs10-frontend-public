@@ -3,7 +3,7 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILED,
   Product,
-} from '../../types'
+} from '../../types/types'
 
 export const fetchInitiate = () => ({
   type: FETCH_PRODUCTS_INIT,

@@ -4,7 +4,7 @@ import {
   FETCH_PRODUCTS_FAILED,
   FetchedTableState,
   Product,
-} from '../../types'
+} from '../../types/types'
 
 const initialState: FetchedTableState = {
   data: [],

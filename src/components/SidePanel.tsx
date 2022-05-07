@@ -3,7 +3,7 @@ import { removeFromCart } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
-import { SidePanelState, AppState, Product } from '../types'
+import { SidePanelState, AppState, Product } from '../types/types'
 
 const SidePanel = () => {
   const dispatch = useDispatch()

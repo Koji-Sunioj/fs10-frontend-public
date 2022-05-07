@@ -4,13 +4,18 @@ import thunk from 'redux-thunk'
 import createRootReducer from './reducers'
 import rootSaga from './sagas'
 
-import { AppState } from '../types'
+import { AppState } from '../types/types'
 
 const initState: AppState = {
   products: { data: [], loading: false, error: false },
   tableview: { searchBy: '', sortBy: 'title', direction: 'descending' },
   cart: [],
   sidepanel: { collapsed: true },
+  productpage: {
+    product: null,
+    loading: false,
+    error: false,
+  },
 }
 
 export default function makeStore(initialState = initState) {

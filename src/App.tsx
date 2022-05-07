@@ -5,7 +5,7 @@ import { createContext, useState } from 'react'
 import AppNav from './components/AppNav'
 import { themes } from './utils/cssObjects'
 import SidePanel from './components/SidePanel'
-import { ThemeContextType, theme } from './types'
+import { ThemeContextType, theme } from './types/types'
 
 export const ThemeContext = createContext<ThemeContextType>({
   isDark: 'light',

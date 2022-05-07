@@ -1,4 +1,4 @@
-import { ThemeObjectTypes, PointerProps } from '../types'
+import { ThemeObjectTypes, PointerProps } from '../types/types'
 
 export const pointers: PointerProps = {
   ascending: '\u2191',

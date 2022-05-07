@@ -6,7 +6,7 @@ import { sidePanelClose, sidePanelOpen } from '../redux/actions'
 import { Nav, Navbar, Container, Button, Dropdown } from 'react-bootstrap'
 
 import { ThemeContext } from '../App'
-import { Cart, AppState, SidePanelState } from '../types'
+import { Cart, AppState, SidePanelState } from '../types/types'
 
 const AppNav = () => {
   const cart: Cart = useSelector((state: AppState) => state.cart)

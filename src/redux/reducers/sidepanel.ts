@@ -1,4 +1,8 @@
-import { SIDEPANEL_CLOSE, SIDEPANEL_OPEN, SidePanelState } from '../../types'
+import {
+  SIDEPANEL_CLOSE,
+  SIDEPANEL_OPEN,
+  SidePanelState,
+} from '../../types/types'
 
 const initialState: SidePanelState = { collapsed: true }
 

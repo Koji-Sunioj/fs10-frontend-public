@@ -1,4 +1,4 @@
-import { Product } from '../types'
+import { Product } from '../types/types'
 
 const sort = (direction: string, target: string[], array: Product[]) => {
   const checkBrackets = (target: string[], position: Record<string, any>) => {

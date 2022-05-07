@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, Product } from '../../types'
+import { ADD_TO_CART, REMOVE_FROM_CART, Product } from '../../types/types'
 
 export function addToCart(payload: Product) {
   return {

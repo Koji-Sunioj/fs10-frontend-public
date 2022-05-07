@@ -10,7 +10,7 @@ import { ThemeContext } from '../App'
 import sort from '../utils/sortProducts'
 import checkCart from '../utils/checkCart'
 import { pointers } from '../utils/cssObjects'
-import { Product, Cart, AppState, SearchTableState } from '../types'
+import { Product, Cart, AppState, SearchTableState } from '../types/types'
 
 type TablePropType = {
   values: Product[]

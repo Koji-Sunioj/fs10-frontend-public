@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH, UPDATE_SORT, SearchTableState } from '../../types'
+import { UPDATE_SEARCH, UPDATE_SORT, SearchTableState } from '../../types/types'
 
 const initialState: SearchTableState = {
   searchBy: '',

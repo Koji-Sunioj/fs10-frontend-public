@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH, UPDATE_SORT } from '../../types'
+import { UPDATE_SEARCH, UPDATE_SORT } from '../../types/types'
 
 export function updateSearch(payload: string) {
   return {

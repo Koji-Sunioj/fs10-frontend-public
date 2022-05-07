@@ -1,4 +1,4 @@
-import { Product } from '../types'
+import { Product } from '../types/types'
 
 const checkCart = (id: number, cart: Product[]): boolean => {
   const checkCart = cart.find((cart) => cart.id === id)

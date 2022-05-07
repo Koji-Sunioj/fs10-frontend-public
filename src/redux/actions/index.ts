@@ -1,4 +1,5 @@
 export * from './products'
+export * from './productpage'
 export * from './tableview'
 export * from './cart'
 export * from './sidepanel'

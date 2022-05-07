@@ -1,4 +1,4 @@
-import { SIDEPANEL_CLOSE, SIDEPANEL_OPEN } from '../../types'
+import { SIDEPANEL_CLOSE, SIDEPANEL_OPEN } from '../../types/types'
 
 export function sidePanelClose() {
   return {

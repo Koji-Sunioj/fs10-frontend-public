@@ -6,7 +6,7 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILED,
   Product,
-} from '../../types'
+} from '../../types/types'
 
 async function productsFetch(url: string): Promise<Product[]> {
   return await fetch(url)
