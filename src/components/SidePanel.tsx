@@ -3,6 +3,7 @@ import { removeFromCart } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
+import { useState, useEffect } from 'react'
 import { SidePanelState, AppState, Product } from '../types/types'
 
 const SidePanel = () => {
@@ -16,8 +17,23 @@ const SidePanel = () => {
     return start + item.price
   }, 0)
 
+  const [windowDimensions, setWindowDimensions] = useState(
+    window.innerWidth < 600 ? '-100%' : '-50%'
+  )
+
+  const handleResize = () => {
+    setWindowDimensions(window.innerWidth < 600 ? '-100%' : '-50%')
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
-    <div className="side-bar" style={{ right: collapsed ? '-50%' : '0%' }}>
+    <div
+      className="side-bar"
+      style={{ right: collapsed ? windowDimensions : '0%' }}
+    >
       <Container>
         {cart &&
           cart.map((item) => (
@@ -41,15 +57,13 @@ const SidePanel = () => {
             </Row>
           ))}
         <Row>
-          {sum > 0 ? (
-            <p>
+          <p>
+            {sum > 0 ? (
               <strong>Total: &euro;{sum.toFixed(2)}</strong>
-            </p>
-          ) : (
-            <p>
+            ) : (
               <strong>Cart is empty &#129300;</strong>
-            </p>
-          )}
+            )}
+          </p>
         </Row>
       </Container>
     </div>

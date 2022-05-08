@@ -54,9 +54,10 @@ const AppNav = () => {
           </Dropdown>
           <Button variant={isDark} onClick={toggleSidePanel}>
             <i className="bi bi-cart"></i>
-            <span className="cart-notification">
-              {cart.length > 0 && cart.length}
-            </span>
+
+            {cart.length > 0 && (
+              <span className="cart-notification">{cart.length}</span>
+            )}
           </Button>
         </Nav>
       </Container>

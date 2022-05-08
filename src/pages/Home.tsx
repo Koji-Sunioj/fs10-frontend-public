@@ -26,9 +26,12 @@ const Home = () => {
   return (
     <>
       <Container>
-        <Row style={{ justifyContent: 'center', textAlign: 'center' }}>
+        <Row
+          id="search-bar"
+          style={{ justifyContent: 'center', textAlign: 'center' }}
+        >
           <h1>Welcome to my store</h1>
-          <InputGroup className="mb-3" style={{ width: '70%' }}>
+          <InputGroup className="mb-3">
             <InputGroup.Text>Search: </InputGroup.Text>
             <FormControl
               onChange={filterTable}

@@ -3,40 +3,35 @@ import { useParams } from 'react-router-dom'
 import { addToCart } from '../redux/actions'
 import { fetchOneInitiate } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
-import { Container, Col, Button, Alert, Row } from 'react-bootstrap'
+import { Container, Col, Button, Alert } from 'react-bootstrap'
 
 import Stars from '../components/Stars'
 import checkCart from '../utils/checkCart'
-import { AppState, FetchedTableState, Cart } from '../types/types'
-
-/*
-
-please note that this is not finished yet.
-
-*/
+import { AppState, FetchedTableState, Cart, Product } from '../types/types'
 
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>()
   const { data }: FetchedTableState = useSelector(
     (state: AppState) => state.products
   )
-  let alt = useSelector((state: AppState) => state.productpage.product)
+  let { product, loading, error } = useSelector(
+    (state: AppState) => state.productpage
+  )
   const cart: Cart = useSelector((state: AppState) => state.cart)
   const dispatch = useDispatch()
 
-  let productInState: any
+  let productInState: Product | null = null
 
-  if (data.length === 0 && !alt) {
+  if (data.length === 0 && !product && !loading && !error) {
     dispatch(fetchOneInitiate(id))
   }
 
-  if (alt && data.length === 0) {
-    productInState = alt
+  if (product && data.length === 0) {
+    productInState = product
   } else if (data.length > 0) {
     productInState = data.find((item) => item.id === Number(id))!
   }
 
-  //= data.find((item) => item.id === Number(id))
   return (
     <Container>
       {productInState && (
@@ -50,7 +45,7 @@ const ProductPage = () => {
           </Col>
           <Col lg={6}>
             <h3>{productInState.title}</h3>
-            <p>{productInState.description}</p>
+            <p>{productInState.description}</p>{' '}
             <p>
               <strong>category: </strong>
               {productInState.category}
@@ -64,7 +59,7 @@ const ProductPage = () => {
             </p>
             <Button
               onClick={() => {
-                dispatch(addToCart(productInState))
+                dispatch(addToCart(productInState!))
               }}
               disabled={checkCart(productInState.id, cart)}
             >
@@ -73,11 +68,14 @@ const ProductPage = () => {
           </Col>
         </div>
       )}
-      {!productInState && (
-        <Row>
-          <Alert variant="danger">error fetching data :(</Alert>{' '}
-        </Row>
-      )}
+      <div className="row" style={{ textAlign: 'center', top: '50%' }}>
+        {loading && (
+          <p>
+            <strong>...loading</strong>
+          </p>
+        )}
+        {error && <Alert variant="danger">error fetching data :(</Alert>}
+      </div>
     </Container>
   )
 }

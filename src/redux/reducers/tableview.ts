@@ -2,7 +2,7 @@ import { UPDATE_SEARCH, UPDATE_SORT, SearchTableState } from '../../types/types'
 
 const initialState: SearchTableState = {
   searchBy: '',
-  sortBy: 'title',
+  sortBy: 'rating.rate',
   direction: 'descending',
 }
 

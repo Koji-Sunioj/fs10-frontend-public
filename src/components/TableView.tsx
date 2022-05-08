@@ -46,30 +46,32 @@ const TableView = ({ values, filter }: TablePropType) => {
     }
   }
 
-  function sortButton(th: string) {
-    if (filter.sortBy.includes(th)) {
-      let symbol: string = pointers[filter.direction]
-      return (
-        <th key={th}>
-          <Button variant={isDark} onClick={sortColumns} value={th}>
-            {th.split('.')[0]}
-            {symbol}
-          </Button>
-        </th>
-      )
-    } else {
-      return (
-        <th key={th}>
-          <Button variant={isDark} onClick={sortColumns} value={th}>
-            {th.split('.')[0]}
-          </Button>
-        </th>
-      )
-    }
+  const sortButton = (th: string) => {
+    let buttonFill
+    filter.sortBy.includes(th)
+      ? (buttonFill = React.createElement(
+        'strong',
+        {},
+        `${th.split('.')[0] + pointers[filter.direction]}`
+      ))
+      : (buttonFill = th.split('.')[0])
+
+    return (
+      <th key={th}>
+        <Button variant={isDark} onClick={sortColumns} value={th}>
+          {buttonFill}
+        </Button>
+      </th>
+    )
   }
 
   return (
-    <Table responsive hover variant={isDark} size="sm">
+    <Table
+      responsive
+      hover
+      variant={isDark}
+      style={{ backgroundColor: 'black' }}
+    >
       <thead>
         <tr>
           <th></th>
@@ -98,7 +100,7 @@ const TableView = ({ values, filter }: TablePropType) => {
                 }}
                 disabled={checkCart(value.id, cart)}
               >
-                Add to cart
+                Add
               </Button>
             </td>
           </tr>

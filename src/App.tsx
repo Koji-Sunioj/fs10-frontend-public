@@ -17,8 +17,8 @@ const App = () => {
 
   const changeTheme = (theme: theme): void => {
     setDark(theme)
-    Object.entries(themes[theme]).forEach((thing: any) => {
-      document.documentElement.style.setProperty(thing[0], thing[1])
+    Object.entries(themes[theme]).forEach((keyPair) => {
+      document.documentElement.style.setProperty(keyPair[0], keyPair[1])
     })
   }
 
