@@ -8,6 +8,7 @@
 .input-group-text {
   background-color: var(--main-input-text);
   color: var(--main-text-color);
+  transition: 0.5s;
 }
 
 @media only screen and (max-width: 600px) {
@@ -49,20 +50,25 @@ html {
 body {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
+  transition: 0.5s;
+  transition-property: background-color;
 }
 
 h1 {
   color: var(--main-text-color);
+  transition: 0.5s;
 }
 
 .form-control,
 .form-control:focus {
+  transition: 0.5s;
   background-color: var(--main-bs-class);
   color: var(--main-text-color);
 }
 
 .navbar {
   border-bottom: 1px solid lightgrey;
+  transition: 0.5s;
 }
 .side-bar {
   height: 100%;
@@ -102,6 +108,7 @@ h1 {
 
 .product {
   background-color: var(--main-bs-class);
+  transition: 0.5s;
   border: 1px solid lightgrey;
   padding: 20px;
 }
