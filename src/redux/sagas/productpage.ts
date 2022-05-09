@@ -15,7 +15,6 @@ async function productsFetch(url: string): Promise<Product> {
 }
 
 function* productPageSaga(action: { type: string; payload: string }) {
-  yield console.log(action.payload)
   try {
     const fetched: Product = yield call(
       productsFetch,

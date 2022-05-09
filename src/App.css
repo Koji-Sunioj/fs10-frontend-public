@@ -22,6 +22,10 @@
   .side-bar {
     width: 100%;
   }
+
+  .title-column {
+    width: auto;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -32,13 +36,17 @@
   .side-bar {
     width: 50%;
   }
+
+  .title-column {
+    width: 30%;
+  }
 }
 
 html {
   overflow-y: scroll;
 }
 
-body:not(table) {
+body {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
 }
@@ -123,7 +131,6 @@ td {
 }
 
 .title-column {
-  width: 30%;
   text-align: left;
 }
 

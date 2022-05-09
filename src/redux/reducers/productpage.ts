@@ -2,6 +2,7 @@ import {
   FETCH_PRODUCTPAGE_INIT,
   FETCH_PRODUCTPAGE_SUCCESS,
   FETCH_PRODUCTPAGE_FAILED,
+  FETCH_PRODUCTPAGE_RESET,
   FetchedOneState,
   Product,
 } from '../../types/types'
@@ -18,7 +19,6 @@ export default function productpage(
 ): FetchedOneState {
   switch (action.type) {
   case FETCH_PRODUCTPAGE_INIT: {
-    console.log('init reducer', action.payload)
     return { ...state, loading: true, error: false }
   }
 
@@ -35,6 +35,10 @@ export default function productpage(
       error: false,
     }
   }
+  case FETCH_PRODUCTPAGE_RESET: {
+    return initialState
+  }
+
   default:
     return state
   }

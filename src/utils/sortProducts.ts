@@ -1,12 +1,14 @@
 import { Product } from '../types/types'
 
 const sort = (direction: string, target: string[], array: Product[]) => {
-  const checkBrackets = (target: string[], position: Record<string, any>) => {
-    let value
-    if (target.length === 1) {
-      value = position[target[0]]
-    } else if (target.length === 2) {
-      value = position[target[0]][target[1]]
+  const checkBrackets = (target: string[], position: Product) => {
+    let value = position[target[0] as keyof Product]
+    if (
+      typeof value === 'object' &&
+      target[1] &&
+      value.hasOwnProperty(target[1])
+    ) {
+      value = value[target[1] as keyof Product['rating']]
     }
     return value
   }

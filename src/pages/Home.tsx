@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchInitiate, updateSearch } from '../redux/actions'
+import { fetchInitiate, updateSearch, resetFetchOne } from '../redux/actions'
 import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 
 import TableView from '../components/TableView'
@@ -18,6 +18,7 @@ const Home = () => {
 
   if (!data.length && !error && !loading) {
     dispatch(fetchInitiate())
+    dispatch(resetFetchOne())
   }
   const filterTable = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(updateSearch(event.currentTarget.value))

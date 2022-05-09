@@ -6,6 +6,7 @@ export const FETCH_PRODUCTS_FAILED = 'FETCH_PRODUCTS_FAILED'
 export const FETCH_PRODUCTPAGE_INIT = 'FETCH_PRODUCTPAGE_INIT'
 export const FETCH_PRODUCTPAGE_SUCCESS = 'FETCH_PRODUCTPAGE_SUCCESS'
 export const FETCH_PRODUCTPAGE_FAILED = 'FETCH_PRODUCTPAGE_FAILED'
+export const FETCH_PRODUCTPAGE_RESET = 'FETCH_PRODUCTPAGE_RESET'
 
 export const UPDATE_SEARCH = 'UPDATE_SEARCH'
 export const UPDATE_SORT = 'UPDATE_SORT'
@@ -27,6 +28,8 @@ export type FetchedOneState = {
   loading: boolean
   error: boolean
 }
+
+export type gen = { rate: number; count: number }
 
 export type Product = {
   id: number
