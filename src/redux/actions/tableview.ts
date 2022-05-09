@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH, UPDATE_SORT } from '../../types/types'
+import { UPDATE_SEARCH, UPDATE_SORT, UPDATE_PAGE } from '../../types/types'
 
 export function updateSearch(payload: string) {
   return {
@@ -10,6 +10,13 @@ export function updateSearch(payload: string) {
 export function updateSort(payload: { direction: string; sortBy: string }) {
   return {
     type: UPDATE_SORT,
+    payload,
+  }
+}
+
+export function updatePage(payload: { page: number }) {
+  return {
+    type: UPDATE_PAGE,
     payload,
   }
 }

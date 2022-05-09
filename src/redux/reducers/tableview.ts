@@ -1,9 +1,15 @@
-import { UPDATE_SEARCH, UPDATE_SORT, SearchTableState } from '../../types/types'
+import {
+  UPDATE_SEARCH,
+  UPDATE_SORT,
+  UPDATE_PAGE,
+  SearchTableState,
+} from '../../types/types'
 
 const initialState: SearchTableState = {
   searchBy: '',
   sortBy: 'rating.rate',
   direction: 'descending',
+  page: 1,
 }
 
 export default function products(
@@ -28,6 +34,10 @@ export default function products(
       direction: action.payload.direction,
     }
   }
+  case UPDATE_PAGE: {
+    return { ...state, page: action.payload.page }
+  }
+
   default:
     return state
   }

@@ -57,6 +57,7 @@ body {
 h1 {
   color: var(--main-text-color);
   transition: 0.5s;
+  transition-property: background-color;
 }
 
 .form-control,
@@ -147,4 +148,9 @@ td {
 
 a {
   text-decoration: none;
+}
+
+#paginator .btn {
+  background-color: var(--main-bs-class);
+  transition: 0.5s;
 }

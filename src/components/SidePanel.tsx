@@ -1,10 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { removeFromCart } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import { SidePanelState, AppState, Product } from '../types/types'
 
 const SidePanel = () => {

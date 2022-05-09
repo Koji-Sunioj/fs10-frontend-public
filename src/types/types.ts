@@ -10,6 +10,7 @@ export const FETCH_PRODUCTPAGE_RESET = 'FETCH_PRODUCTPAGE_RESET'
 
 export const UPDATE_SEARCH = 'UPDATE_SEARCH'
 export const UPDATE_SORT = 'UPDATE_SORT'
+export const UPDATE_PAGE = 'UPDATE_PAGE'
 
 export const ADD_TO_CART = 'ADD_TO_CART'
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
@@ -51,6 +52,7 @@ export type SearchTableState = {
   searchBy: string
   sortBy: string
   direction: string
+  page: number
 }
 
 export type AppState = {
