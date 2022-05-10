@@ -24,8 +24,8 @@ const TableView = ({ values, filter }: TablePropType) => {
   const { isDark } = useContext(ThemeContext)
   let filtered = values.filter(
     (value: Product) =>
-      value.title.toLowerCase().includes(filter.searchBy) ||
-      value.category.includes(filter.searchBy)
+      value.title.toLowerCase().includes(filter.searchBy.toLowerCase()) ||
+      value.category.toLowerCase().includes(filter.searchBy.toLowerCase())
   )
 
   sort(filter.direction, filter.sortBy.split('.'), filtered)
@@ -78,12 +78,7 @@ const TableView = ({ values, filter }: TablePropType) => {
 
   return (
     <>
-      <Table
-        responsive
-        hover
-        variant={isDark}
-        style={{ backgroundColor: 'black' }}
-      >
+      <Table hover variant={isDark} style={{ backgroundColor: 'black' }}>
         <thead>
           <tr>
             <th></th>

@@ -27,6 +27,15 @@
   .title-column {
     width: auto;
   }
+
+  .card-image {
+    width: inherit;
+  }
+
+  table td:nth-child(n + 3),
+  th {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -40,6 +49,10 @@
 
   .title-column {
     width: 30%;
+  }
+
+  .card-image {
+    width: 300px;
   }
 }
 
@@ -133,7 +146,6 @@ td {
 }
 
 .card-image {
-  width: 300px;
   margin: 20px;
   object-fit: contain;
 }
