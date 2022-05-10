@@ -19,11 +19,11 @@ const SidePanel = () => {
   }, 0)
 
   const [windowDimensions, setWindowDimensions] = useState(
-    window.innerWidth < 600 ? '-100%' : '-50%'
+    window.innerWidth < 768 ? '-100%' : '-50%'
   )
 
   const handleResize = () => {
-    setWindowDimensions(window.innerWidth < 600 ? '-100%' : '-50%')
+    setWindowDimensions(window.innerWidth < 768 ? '-100%' : '-50%')
   }
   useEffect(() => {
     window.addEventListener('resize', handleResize)

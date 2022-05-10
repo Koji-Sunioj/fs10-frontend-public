@@ -11,7 +11,7 @@
   transition: 0.5s;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   #search-bar .input-group-text {
     display: none;
   }
@@ -24,12 +24,12 @@
     width: 100%;
   }
 
-  .title-column {
-    width: auto;
+  .card-image {
+    padding-bottom: 20px;
   }
 
-  .card-image {
-    width: inherit;
+  .title-column {
+    width: auto;
   }
 
   table td:nth-child(n + 3),
@@ -38,7 +38,7 @@
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 768px) {
   #search-bar .input-group {
     width: 70%;
   }
@@ -49,10 +49,6 @@
 
   .title-column {
     width: 30%;
-  }
-
-  .card-image {
-    width: 300px;
   }
 }
 
@@ -97,8 +93,7 @@ h1 {
   background-color: var(--main-bs-class);
 }
 
-.col-lg-6 {
-  vertical-align: middle;
+.col-md-6 {
   margin-top: auto;
   margin-bottom: auto;
   justify-content: center;
@@ -146,7 +141,8 @@ td {
 }
 
 .card-image {
-  margin: 20px;
+  width: 25vw;
+  height: auto;
   object-fit: contain;
 }
 
@@ -160,6 +156,10 @@ td {
 
 a {
   text-decoration: none;
+}
+
+#paginator {
+  padding: 0px;
 }
 
 #paginator .btn {

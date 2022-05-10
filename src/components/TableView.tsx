@@ -114,9 +114,8 @@ const TableView = ({ values, filter }: TablePropType) => {
           ))}
         </tbody>
       </Table>
-
-      <div>
-        <ButtonGroup aria-label="Basic example" id="paginator">
+      <div id="paginator">
+        <ButtonGroup aria-label="Basic example">
           {pages.map((subset) => (
             <Button
               key={subset}

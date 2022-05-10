@@ -36,14 +36,14 @@ const ProductPage = () => {
     <Container>
       {productInState && (
         <div className="row product">
-          <Col style={{ textAlign: 'center', verticalAlign: 'middle' }} lg={6}>
+          <Col style={{ textAlign: 'center', verticalAlign: 'middle' }} md={6}>
             <img
               src={productInState.image}
               className="card-image"
               alt={productInState.title}
             ></img>
           </Col>
-          <Col lg={6}>
+          <Col md={6}>
             <h3>{productInState.title}</h3>
             <p>{productInState.description}</p>{' '}
             <p>
