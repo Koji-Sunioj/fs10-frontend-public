@@ -14,7 +14,7 @@ export function updateSort(payload: { direction: string; sortBy: string }) {
   }
 }
 
-export function updatePage(payload: { page: number }) {
+export function updatePage(payload: number) {
   return {
     type: UPDATE_PAGE,
     payload,

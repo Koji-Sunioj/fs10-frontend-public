@@ -16,7 +16,7 @@ export default function products(
   state = initialState,
   action: {
     type: string
-    payload: SearchTableState
+    payload: { direction: string; sortBy: string } & number
   }
 ): SearchTableState {
   switch (action.type) {
@@ -35,7 +35,7 @@ export default function products(
     }
   }
   case UPDATE_PAGE: {
-    return { ...state, page: action.payload.page }
+    return { ...state, page: action.payload }
   }
 
   default:

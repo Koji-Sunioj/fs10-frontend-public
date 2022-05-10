@@ -31,7 +31,7 @@ const TableView = ({ values, filter }: TablePropType) => {
   sort(filter.direction, filter.sortBy.split('.'), filtered)
 
   function setPage(page: number) {
-    dispatch(updatePage({ page: page }))
+    dispatch(updatePage(page))
   }
 
   const pages = []
@@ -122,7 +122,7 @@ const TableView = ({ values, filter }: TablePropType) => {
               key={subset}
               variant={isDark}
               onClick={() => {
-                dispatch(updatePage({ page: subset }))
+                dispatch(updatePage(subset))
               }}
               disabled={subset === filter.page}
             >
