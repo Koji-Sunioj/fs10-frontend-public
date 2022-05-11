@@ -5,16 +5,18 @@ function pageBack(
   page: number,
   setPage: (page: number) => void
 ) {
-  if (filtered.slice(page * 5 - 5, page * 5).length === 0) {
+  let currentPage = filtered.slice(page * 5 - 5, page * 5)
+  if (currentPage.length === 0) {
     for (let i = page; i > 0; i--) {
-      if (filtered.slice(i * 5 - 5, i * 5).length > 0) {
-        filtered = filtered.slice(i * 5 - 5, i * 5)
+      const prevPage = filtered.slice(i * 5 - 5, i * 5)
+      if (prevPage.length > 0) {
+        filtered = prevPage
         setPage(i)
         break
       }
     }
   } else {
-    filtered = filtered.slice(page * 5 - 5, page * 5)
+    filtered = currentPage
   }
   return filtered
 }
