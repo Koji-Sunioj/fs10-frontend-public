@@ -48,68 +48,80 @@ const TableView = ({ values, filter }: TablePropType) => {
 
   return (
     <>
-      <Table hover variant={isDark}>
-        <thead>
-          <tr>
-            <th></th>
-            {['title', 'category', 'price', 'rating.rate'].map((th) =>
-              sortButton(th, filter, isDark, sortColumns)
-            )}
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {filtered.map((value) => (
-            <tr key={value.id}>
-              <td>
-                <img className="img" src={value.image} alt={value.title}></img>
-              </td>
-              <td className="title-column">
-                <Link to={'products/' + value.id}>{value.title}</Link>
-              </td>
-              <td>{value.category}</td>
-              <td>&euro;{value.price.toFixed(2)}</td>
-              <td>{Stars(Number(value.rating.rate), value.id)}</td>
-              <td className="button-column">
-                {checkCart(value.id, cart) ? (
-                  <Button
-                    variant="danger"
-                    onClick={() => {
-                      dispatch(removeFromCart(value))
-                    }}
-                  >
-                    Remove
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={() => {
-                      dispatch(addToCart(value))
-                    }}
-                  >
-                    Add
-                  </Button>
+      {filtered.length === 0 ? (
+        <p style={{ textAlign: 'center' }}>
+          <strong>no results found</strong>
+        </p>
+      ) : (
+        <>
+          <Table hover variant={isDark} hidden={filtered.length === 0}>
+            <thead>
+              <tr>
+                <th></th>
+                {['title', 'category', 'price', 'rating.rate'].map((th) =>
+                  sortButton(th, filter, isDark, sortColumns)
                 )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      <div id="paginator">
-        <ButtonGroup aria-label="Basic example">
-          {pages.map((subset) => (
-            <Button
-              key={subset}
-              variant={isDark}
-              onClick={() => {
-                dispatch(updatePage(subset))
-              }}
-              disabled={subset === filter.page}
-            >
-              {subset}
-            </Button>
-          ))}
-        </ButtonGroup>
-      </div>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((value) => (
+                <tr key={value.id}>
+                  <td>
+                    <img
+                      className="img"
+                      src={value.image}
+                      alt={value.title}
+                    ></img>
+                  </td>
+                  <td className="title-column">
+                    <Link to={'products/' + value.id}>{value.title}</Link>
+                  </td>
+                  <td>{value.category}</td>
+                  <td>&euro;{value.price.toFixed(2)}</td>
+                  <td>{Stars(Number(value.rating.rate), value.id)}</td>
+                  <td className="button-column">
+                    {checkCart(value.id, cart) ? (
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          dispatch(removeFromCart(value))
+                        }}
+                      >
+                        Remove
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => {
+                          dispatch(addToCart(value))
+                        }}
+                      >
+                        Add
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <div id="paginator">
+            <ButtonGroup>
+              {pages.map((subset) => (
+                <Button
+                  key={subset}
+                  variant={isDark}
+                  onClick={() => {
+                    dispatch(updatePage(subset))
+                  }}
+                  disabled={subset === filter.page}
+                >
+                  {subset}
+                </Button>
+              ))}
+            </ButtonGroup>
+          </div>
+        </>
+      )}
     </>
   )
 }

@@ -55,14 +55,14 @@ const Home = () => {
               onChange={filterTable}
             ></input>
           </InputGroup>
+        </Row>
+        <Row>
           {loading && (
-            <p>
+            <p style={{ textAlign: 'center' }}>
               <strong>...loading</strong>
             </p>
           )}
           {error && <Alert variant="danger">error fetching data :(</Alert>}
-        </Row>
-        <Row>
           {data.length > 0 && <TableView values={data!} filter={tableview} />}
         </Row>
       </Container>
