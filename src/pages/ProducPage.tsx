@@ -22,7 +22,7 @@ const ProductPage = () => {
 
   let productInState: Product | null = null
 
-  if (data.length === 0 && !product && !loading && !error) {
+  if ([!data.length, !product, !loading, !error].every(Boolean)) {
     dispatch(fetchOneInitiate(id))
   }
 

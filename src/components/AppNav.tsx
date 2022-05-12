@@ -13,9 +13,7 @@ const AppNav = () => {
   const { collapsed }: SidePanelState = useSelector(
     (state: AppState) => state.sidepanel
   )
-
   const { isDark, changeTheme } = useContext(ThemeContext)
-
   const dispatch = useDispatch()
 
   const toggleSidePanel = () => {
@@ -54,7 +52,6 @@ const AppNav = () => {
           </Dropdown>
           <Button variant={isDark} onClick={toggleSidePanel}>
             <i className="bi bi-cart"></i>
-
             {cart.length > 0 && (
               <span className="cart-notification">{cart.length}</span>
             )}

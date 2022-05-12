@@ -1,31 +1,30 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Container, Row, InputGroup, Alert } from 'react-bootstrap'
 import {
   fetchInitiate,
   updateSearch,
   resetFetchOne,
   updatePage,
 } from '../redux/actions'
-import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 
+import pageBack from '../utils/pageBack'
 import TableView from '../components/TableView'
 import filterProducts from '../utils/filterProducts'
-import pageBack from '../utils/pageBack'
 import { AppState, FetchedTableState, SearchTableState } from '../types/types'
 
 const Home = () => {
   const { data, loading, error }: FetchedTableState = useSelector(
     (state: AppState) => state.products
   )
-
   const tableview: SearchTableState = useSelector(
     (state: AppState) => state.tableview
   )
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!data.length && !error && !loading) {
+    if ([!data.length, !error, !loading].every(Boolean)) {
       dispatch(fetchInitiate())
       dispatch(resetFetchOne())
     }
@@ -44,18 +43,17 @@ const Home = () => {
   return (
     <>
       <Container>
-        <Row
-          id="search-bar"
-          style={{ justifyContent: 'center', textAlign: 'center' }}
-        >
+        <Row id="search-bar">
           <h1>Welcome to my store</h1>
           <InputGroup className="mb-3">
             <InputGroup.Text>Search: </InputGroup.Text>
-            <FormControl
-              onChange={filterTable}
+            <input
               placeholder="product name, category...."
+              type="search"
+              className="form-control"
               value={tableview.searchBy}
-            />
+              onChange={filterTable}
+            ></input>
           </InputGroup>
           {loading && (
             <p>

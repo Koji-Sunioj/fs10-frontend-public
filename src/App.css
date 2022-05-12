@@ -36,6 +36,22 @@
   th {
     display: none;
   }
+
+  h1,
+  .row {
+    margin: 40px 0px 40px 0px;
+    --bs-gutter-x: 0px;
+  }
+
+  .card-image {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .form-control {
+    border-radius: 0px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -49,6 +65,24 @@
 
   .title-column {
     width: 30%;
+  }
+
+  .button-column {
+    width: 10%;
+  }
+
+  td:not(.title-column):not(.button-column) {
+    width: 15%;
+  }
+
+  h1,
+  .row {
+    margin: 40px;
+  }
+  .card-image {
+    width: 25vw;
+    height: auto;
+    object-fit: contain;
   }
 }
 
@@ -66,7 +100,7 @@ body {
 h1 {
   color: var(--main-text-color);
   transition: 0.5s;
-  transition-property: background-color;
+  transition-property: color;
 }
 
 .form-control,
@@ -118,13 +152,9 @@ h1 {
 .product {
   background-color: var(--main-bs-class);
   transition: 0.5s;
+  transition-property: background-color;
   border: 1px solid lightgrey;
   padding: 20px;
-}
-
-h1,
-.row {
-  margin: 40px;
 }
 
 th,
@@ -138,12 +168,6 @@ td {
   height: 100px;
   object-fit: contain;
   background-color: white;
-}
-
-.card-image {
-  width: 25vw;
-  height: auto;
-  object-fit: contain;
 }
 
 .title-column {
@@ -167,6 +191,13 @@ a {
   transition: 0.5s;
 }
 
-.button-column {
-  width: 10%;
+.table-dark {
+  --bs-table-bg: black;
+}
+#search-bar {
+  text-align: center;
+  justify-content: center;
+}
+.table {
+  border: 1px solid lightgrey;
 }

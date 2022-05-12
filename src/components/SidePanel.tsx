@@ -60,13 +60,18 @@ const SidePanel = () => {
             </Row>
           ))}
         <Row>
-          <p>
-            {sum > 0 ? (
-              <strong>Total: &euro;{sum.toFixed(2)}</strong>
-            ) : (
+          {sum > 0 ? (
+            <>
+              <hr></hr>
+              <p>
+                <strong>Total: &euro;{sum.toFixed(2)}</strong>
+              </p>
+            </>
+          ) : (
+            <p>
               <strong>Cart is empty &#129300;</strong>
-            )}
-          </p>
+            </p>
+          )}
         </Row>
       </Container>
     </div>

@@ -11,10 +11,10 @@ import {
 import { Button, Table, ButtonGroup } from 'react-bootstrap'
 
 import Stars from './Stars'
+import sortButton from './sortButton'
 import { ThemeContext } from '../App'
 import sort from '../utils/sortProducts'
 import checkCart from '../utils/checkCart'
-import { pointers } from '../utils/cssObjects'
 import filterProducts from '../utils/filterProducts'
 import { Product, Cart, AppState, SearchTableState } from '../types/types'
 
@@ -36,50 +36,24 @@ const TableView = ({ values, filter }: TablePropType) => {
   }
   filtered = filtered.slice(filter.page * 5 - 5, filter.page * 5)
 
-  const sortColumns = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const targeted = event.currentTarget.value
-    if (targeted === filter.sortBy) {
+  const sortColumns = (tableHeader: string) => {
+    if (tableHeader === filter.sortBy) {
       let direction =
         filter.direction === 'descending' ? 'ascending' : 'descending'
-
       dispatch(updateSort({ sortBy: filter.sortBy, direction: direction }))
     } else {
-      dispatch(
-        updateSort({
-          sortBy: event.currentTarget.value,
-          direction: 'descending',
-        })
-      )
+      dispatch(updateSort({ sortBy: tableHeader, direction: 'descending' }))
     }
-  }
-
-  const sortButton = (th: string) => {
-    let buttonFill
-    filter.sortBy.includes(th)
-      ? (buttonFill = React.createElement(
-        'strong',
-        {},
-        `${th.split('.')[0] + pointers[filter.direction]}`
-      ))
-      : (buttonFill = th.split('.')[0])
-
-    return (
-      <th key={th}>
-        <Button variant={isDark} onClick={sortColumns} value={th}>
-          {buttonFill}
-        </Button>
-      </th>
-    )
   }
 
   return (
     <>
-      <Table hover variant={isDark} style={{ backgroundColor: 'black' }}>
+      <Table hover variant={isDark}>
         <thead>
           <tr>
             <th></th>
             {['title', 'category', 'price', 'rating.rate'].map((th) =>
-              sortButton(th)
+              sortButton(th, filter, isDark, sortColumns)
             )}
             <th></th>
           </tr>
