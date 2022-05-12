@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { addToCart } from '../redux/actions'
+import { addToCart, removeFromCart } from '../redux/actions'
 import { fetchOneInitiate } from '../redux/actions'
 import { useSelector, useDispatch } from 'react-redux'
 import { Container, Col, Button, Alert } from 'react-bootstrap'
@@ -57,14 +57,24 @@ const ProductPage = () => {
               {Stars(Number(productInState.rating.rate), productInState.id)} -
               from {productInState.rating.count} reviews{' '}
             </p>
-            <Button
-              onClick={() => {
-                dispatch(addToCart(productInState!))
-              }}
-              disabled={checkCart(productInState.id, cart)}
-            >
-              Add to Cart
-            </Button>
+            {checkCart(productInState.id, cart) ? (
+              <Button
+                variant="danger"
+                onClick={() => {
+                  dispatch(removeFromCart(productInState!))
+                }}
+              >
+                Remove
+              </Button>
+            ) : (
+              <Button
+                onClick={() => {
+                  dispatch(addToCart(productInState!))
+                }}
+              >
+                Add
+              </Button>
+            )}
           </Col>
         </div>
       )}

@@ -166,3 +166,7 @@ a {
   background-color: var(--main-bs-class);
   transition: 0.5s;
 }
+
+.button-column {
+  width: 10%;
+}

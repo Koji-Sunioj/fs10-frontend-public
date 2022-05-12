@@ -1,9 +1,17 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchInitiate, updateSearch, resetFetchOne } from '../redux/actions'
+import {
+  fetchInitiate,
+  updateSearch,
+  resetFetchOne,
+  updatePage,
+} from '../redux/actions'
 import { Container, Row, InputGroup, FormControl, Alert } from 'react-bootstrap'
 
 import TableView from '../components/TableView'
+import filterProducts from '../utils/filterProducts'
+import pageBack from '../utils/pageBack'
 import { AppState, FetchedTableState, SearchTableState } from '../types/types'
 
 const Home = () => {
@@ -16,12 +24,21 @@ const Home = () => {
   )
   const dispatch = useDispatch()
 
-  if (!data.length && !error && !loading) {
-    dispatch(fetchInitiate())
-    dispatch(resetFetchOne())
-  }
+  useEffect(() => {
+    if (!data.length && !error && !loading) {
+      dispatch(fetchInitiate())
+      dispatch(resetFetchOne())
+    }
+  }, [data, loading, error, dispatch])
+
   const filterTable = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(updateSearch(event.currentTarget.value))
+    const inputString = event.currentTarget.value
+    dispatch(updateSearch(inputString))
+    const filtered = filterProducts(data, inputString)
+    const rightpage = pageBack(filtered, tableview.page)
+    if (rightpage !== tableview.page) {
+      dispatch(updatePage(rightpage!))
+    }
   }
 
   return (

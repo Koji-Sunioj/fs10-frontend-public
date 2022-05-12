@@ -2,15 +2,20 @@ import React from 'react'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, updateSort, updatePage } from '../redux/actions'
+import {
+  addToCart,
+  updateSort,
+  updatePage,
+  removeFromCart,
+} from '../redux/actions'
 import { Button, Table, ButtonGroup } from 'react-bootstrap'
 
 import Stars from './Stars'
-import pageBack from '../utils/pageBack'
 import { ThemeContext } from '../App'
 import sort from '../utils/sortProducts'
 import checkCart from '../utils/checkCart'
 import { pointers } from '../utils/cssObjects'
+import filterProducts from '../utils/filterProducts'
 import { Product, Cart, AppState, SearchTableState } from '../types/types'
 
 type TablePropType = {
@@ -22,23 +27,14 @@ const TableView = ({ values, filter }: TablePropType) => {
   const dispatch = useDispatch()
   const cart: Cart = useSelector((state: AppState) => state.cart)
   const { isDark } = useContext(ThemeContext)
-  let filtered = values.filter(
-    (value: Product) =>
-      value.title.toLowerCase().includes(filter.searchBy.toLowerCase()) ||
-      value.category.toLowerCase().includes(filter.searchBy.toLowerCase())
-  )
 
+  let filtered = filterProducts(values, filter.searchBy)
   sort(filter.direction, filter.sortBy.split('.'), filtered)
-
-  function setPage(page: number) {
-    dispatch(updatePage(page))
-  }
-
   const pages = []
   for (let i = 0; i < Math.ceil(filtered.length / 5); i++) {
     pages.push(i + 1)
   }
-  filtered = pageBack(filtered, filter.page, setPage)
+  filtered = filtered.slice(filter.page * 5 - 5, filter.page * 5)
 
   const sortColumns = (event: React.MouseEvent<HTMLButtonElement>) => {
     const targeted = event.currentTarget.value
@@ -100,15 +96,25 @@ const TableView = ({ values, filter }: TablePropType) => {
               <td>{value.category}</td>
               <td>&euro;{value.price.toFixed(2)}</td>
               <td>{Stars(Number(value.rating.rate), value.id)}</td>
-              <td>
-                <Button
-                  onClick={() => {
-                    dispatch(addToCart(value))
-                  }}
-                  disabled={checkCart(value.id, cart)}
-                >
-                  Add
-                </Button>
+              <td className="button-column">
+                {checkCart(value.id, cart) ? (
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      dispatch(removeFromCart(value))
+                    }}
+                  >
+                    Remove
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      dispatch(addToCart(value))
+                    }}
+                  >
+                    Add
+                  </Button>
+                )}
               </td>
             </tr>
           ))}
