@@ -3,12 +3,19 @@ import { Button } from 'react-bootstrap'
 import { pointers } from '../utils/cssObjects'
 import { SearchTableState } from '../types/types'
 
-const sortButton = (
-  tableHeader: string,
-  filter: SearchTableState,
-  isDark: string,
+type SortState = {
+  tableHeader: string
+  filter: SearchTableState
+  isDark: string
   sortColumns: (tableHeader: string) => void
-) => {
+}
+
+const SortButton = ({
+  tableHeader,
+  filter,
+  isDark,
+  sortColumns,
+}: SortState) => {
   let buttonFill
   filter.sortBy.includes(tableHeader)
     ? (buttonFill = React.createElement(
@@ -32,4 +39,4 @@ const sortButton = (
   )
 }
 
-export default sortButton
+export default SortButton

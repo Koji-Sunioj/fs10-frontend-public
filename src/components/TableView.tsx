@@ -11,7 +11,7 @@ import {
 import { Button, Table, ButtonGroup } from 'react-bootstrap'
 
 import Stars from './Stars'
-import sortButton from './sortButton'
+import SortButton from './SortButton'
 import { ThemeContext } from '../App'
 import sort from '../utils/sortProducts'
 import checkCart from '../utils/checkCart'
@@ -58,9 +58,14 @@ const TableView = ({ values, filter }: TablePropType) => {
             <thead>
               <tr>
                 <th></th>
-                {['title', 'category', 'price', 'rating.rate'].map((th) =>
-                  sortButton(th, filter, isDark, sortColumns)
-                )}
+                {['title', 'category', 'price', 'rating.rate'].map((th) => (
+                  <SortButton
+                    tableHeader={th}
+                    filter={filter}
+                    isDark={isDark}
+                    sortColumns={sortColumns}
+                  />
+                ))}
                 <th></th>
               </tr>
             </thead>
