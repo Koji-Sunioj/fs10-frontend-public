@@ -11,7 +11,7 @@ export const ThemeContext = createContext<ThemeContextType>({
   isDark: 'light',
   changeTheme: (): void => {},
 })
-
+//const hello= 'hello'
 const App = () => {
   const [isDark, setDark] = useState<theme>('light')
 
